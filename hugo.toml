@@ -1,0 +1,69 @@
+baseURL = 'https://blog-v4.kemiaosw.top/'
+languageCode = 'zh-Hans'
+title = '喵落阁'
+theme = "dream"
+[params]
+zenMode = true
+defaultContentLanguage = "zh"
+
+hasCJKLanguage = true
+
+lightTheme = "emerald"
+darkTheme = "forest"
+ 
+# backgroundImage = "img/background.webp"
+# backgroundImageDark = "img/dark-background.png"
+ 
+images = ["img/background.webp"]
+ 
+author = "克喵爱吃卤面"
+description = "愿你看清一切真相后，依旧热爱你的家人和朋友。"
+avatar = "https://cn.cravatar.com/avatar/1F6C8947D35A8186A1647009BA8BC5F2?size=256"
+headerTitle = "喵落阁"
+motto = "愿你看清一切真相后，依旧热爱你的家人和朋友。"
+ 
+footerBottomText = "欢迎来到克喵的博客~"
+
+rss = true
+ 
+utterancesRepo = "Kemeow815/kemiao-hugo-dream"
+ 
+# valine = true
+# LEANCLOUD_APP_ID = ""
+# LEANCLOUD_APP_KEY = ""
+ 
+# waline = true
+# walineServer = ""
+ 
+email = "me@kemiaosw.top"
+ 
+siteStartYear = 2025
+ 
+favicon = "img/favicon.ico"
+ 
+# Syntax highlighting
+customSyntaxHighlighting = true
+ 
+# options
+stickyNav = true
+reorderNavItems = ["about", "search", "rss", "posts", "categories", "tags"]
+collapseNavItems = ["posts", "categories", "tags"]
+noDefaultSummaryCover = true
+showTableOfContents = true
+showSummaryCoverInPost = true
+imageZoomableInPost = true
+showPrevNextPost = true
+reorderShares = ["x", "facebook", "whatsapp"]
+ 
+[params.advanced]
+# customCSS = ["css/custom.css"]
+# customJS = []
+ 
+[params.experimental]
+jsDate = true
+jsDateFormat = "2025年06月06日"
+
+[params.navItems]
+# Telegram = { href = "https://t.me/KemiaoJun", target = "_blank", icon = "paper-plane-outline", title = "Telegram" }
+# github = { href = "https://github.com/Kemeow815", target = "_blank", icon = "logo-github", title = "GitHub" }
+

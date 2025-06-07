@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="zh-Hans"
+  x-data
+  :class="$store.darkMode.class()"
+  :data-theme="$store.darkMode.theme()">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>托管平台 | 喵落阁</title>
+
+    
+  
+    <link href="/img/favicon.ico" rel="icon" type="image/x-icon" />
+  
+
+
+<link rel="canonical" href="https://blog-v4.kemiaosw.top/tags/%E6%89%98%E7%AE%A1%E5%B9%B3%E5%8F%B0/" />
+
+
+
+<meta name="author" content="克喵爱吃卤面" />
+<meta name="description" content="愿你看清一切真相后，依旧热爱你的家人和朋友。" />
+
+
+
+<meta name="generator" content="Hugo 0.147.7">
+
+
+<meta property="og:url" content="https://blog-v4.kemiaosw.top/tags/%E6%89%98%E7%AE%A1%E5%B9%B3%E5%8F%B0/">
+  <meta property="og:site_name" content="喵落阁">
+  <meta property="og:title" content="托管平台">
+  <meta property="og:description" content="愿你看清一切真相后，依旧热爱你的家人和朋友。">
+  <meta property="og:locale" content="zh_Hans">
+  <meta property="og:type" content="website">
+    <meta property="og:image" content="https://blog-v4.kemiaosw.top/img/background.webp">
+
+
+
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://blog-v4.kemiaosw.top/img/background.webp">
+  <meta name="twitter:title" content="托管平台">
+  <meta name="twitter:description" content="愿你看清一切真相后，依旧热爱你的家人和朋友。">
+
+
+
+
+  
+
+<link rel="stylesheet" href="/css/output.min.css" />
+
+
+
+
+     
+
+    
+
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3/dist/cdn.min.js" integrity="sha256-PtHu0lJIiSHfZeNj1nFd6wTX+Squ255SGZ/fc8seCtM=" crossorigin="anonymous"></script>
+  </head>
+
+  <body x-data="{
+    flip: false,
+  }">
+    
+    <div id="dream-global-bg"></div>
+
+    
+<nav x-data="{ isSticky: false }"
+  x-init="window.addEventListener('scroll', () => { isSticky = window.scrollY > 30 })"
+  class="sticky top-0 z-30 mt-4 lg:mt-8 py-4"
+  :class="{ 'bg-base-100 shadow-lg dark:border-b dark:border-base-content/30': isSticky }">
+
+  
+  <div class="container flex justify-between max-w-[65ch] mx-auto px-4 md:px-0">
+  
+    <section class="flex items-center gap-4">
+      <div class="avatar cursor-pointer hover:avatar-online" @click="flip = !flip" title="Flip it!">
+        <div class="h-10 rounded-full">
+          <img src="https://cn.cravatar.com/avatar/1F6C8947D35A8186A1647009BA8BC5F2?size=256" alt="喵落阁" />
+        </div>
+      </div>
+
+      
+      <div>
+        
+        <a href="https://blog-v4.kemiaosw.top/" class="text-lg font-semibold cursor-pointer">
+          喵落阁
+        </a>
+        
+        
+        <div class="text-base-content/60 text-sm">愿你看清一切真相后，依旧热爱你的家人和朋友。</div>
+        
+      </div>
+      
+    </section>
+
+    
+    
+      
+    
+
+    <div class="dropdown dropdown-end sm:hidden">
+      <div tabindex="0" role="button" class="btn btn-ghost btn-square" aria-label="Select an option">
+        <ion-icon name="menu" class="text-2xl"></ion-icon>
+      </div>
+      <ul tabindex="0" class="dropdown-content menu w-36 bg-base-100 rounded-box z-1 shadow-md">
+        
+
+
+
+
+
+
+
+<li>
+  <div role="link" tabindex="0" class="inline-flex items-center p-2 cursor-pointer" @click="flip = !flip" title="About">
+    <ion-icon name="information-circle"></ion-icon>About</div>
+</li>
+
+
+
+
+
+
+
+<li>
+  <a class="group inline-flex items-center p-2 cursor-pointer" href="/search" title="Search">
+    <ion-icon name="search"></ion-icon>
+    Search
+  </a>
+</li>
+
+
+
+
+<li>
+  <a class="inline-flex items-center p-2 cursor-pointer" href="/index.xml" title="RSS">
+    <ion-icon name="logo-rss"></ion-icon>
+    RSS
+  </a>
+</li>
+
+
+
+
+<li>
+  <a class="inline-flex items-center p-2 cursor-pointer" href="/posts" title="Archives">
+    <ion-icon name="archive"></ion-icon>
+    Archives
+  </a>
+</li>
+
+
+
+
+<li>
+  <a class="inline-flex items-center p-2 cursor-pointer" href="/categories" title="All Categories">
+    <ion-icon name="grid"></ion-icon>
+    All Categories
+  </a>
+</li>
+
+
+
+
+<li>
+  <a class="inline-flex items-center p-2 cursor-pointer" href="/tags" title="All Tags">
+    <ion-icon name="pricetags"></ion-icon>
+    All Tags
+  </a>
+</li>
+
+
+
+
+
+
+      </ul>
+    </div>
+    <section class="hidden sm:flex sm:items-center sm:gap-2 md:gap-4">
+      
+
+      
+      
+      
+      
+
+
+
+
+<div role="link" tabindex="0" class="text-sm font-semibold cursor-pointer hover:underline" @click="flip = !flip" title="About">About</div>
+
+
+
+
+
+      
+      
+<a class="group inline-flex items-center p-2 rounded-full cursor-pointer hover:bg-primary" href="/search" title="Search">
+  <ion-icon class="group-hover:text-primary-content" name="search"></ion-icon>
+</a>
+
+
+      
+      
+<a class="group inline-flex items-center p-2 rounded-full cursor-pointer hover:bg-primary" href="/index.xml" title="RSS">
+  <ion-icon class="group-hover:text-primary-content" name="logo-rss"></ion-icon>
+</a>
+
+
+      
+
+      <div class="dropdown dropdown-end dropdown-hover">
+        <div tabindex="0" role="button" class="group inline-flex items-center p-2 rounded-full cursor-pointer hover:bg-primary" aria-label="Select an option">
+          <ion-icon class="group-hover:text-primary-content text-xl" name="menu"></ion-icon>
+        </div>
+        <ul tabindex="0" class="dropdown-content menu w-36 bg-base-100 rounded-box z-1 shadow-xl">
+          
+          
+<li>
+  <a class="inline-flex items-center p-2 cursor-pointer" href="/posts" title="Archives">
+    <ion-icon name="archive"></ion-icon>
+    Archives
+  </a>
+</li>
+
+
+          
+          
+<li>
+  <a class="inline-flex items-center p-2 cursor-pointer" href="/categories" title="All Categories">
+    <ion-icon name="grid"></ion-icon>
+    All Categories
+  </a>
+</li>
+
+
+          
+          
+<li>
+  <a class="inline-flex items-center p-2 cursor-pointer" href="/tags" title="All Tags">
+    <ion-icon name="pricetags"></ion-icon>
+    All Tags
+  </a>
+</li>
+
+
+          
+
+          
+        </ul>
+      </div>
+      
+    </section>
+  </div>
+</nav>
+
+
+    <div class="flip-container" :class="{ 'flip-it': flip }">
+      <div class="flipper">
+        <div class="front">
+          <div class="container">
+            
+
+
+<div class="max-w-[65ch] mt-4 mx-auto">
+
+  <div class="md:basis-[200px] lg:basis-[300px] p-4 prose dark:prose-invert">
+    <h1 class="text-2xl">托管平台</h1>
+    <p class="text-sm">1 article</p>
+    <div class="flex flex-wrap gap-4 mt-6">
+      
+
+      
+      
+      <a href="/tags/cloudflare-workers/" class="badge h-6 no-underline hover:badge-primary">
+        Cloudflare Workers
+      </a>
+      
+      
+      
+      <a href="/tags/drop/" class="badge h-6 no-underline hover:badge-primary">
+        DROP
+      </a>
+      
+      
+      
+      <a href="/tags/git%E6%95%99%E7%A8%8B/" class="badge h-6 no-underline hover:badge-primary">
+        Git教程
+      </a>
+      
+      
+      
+      <a href="/tags/markdown/" class="badge h-6 no-underline hover:badge-primary">
+        Markdown
+      </a>
+      
+      
+      
+      <a href="/tags/music/" class="badge h-6 no-underline hover:badge-primary">
+        Music
+      </a>
+      
+      
+      
+      <a href="/tags/telegram/" class="badge h-6 no-underline hover:badge-primary">
+        Telegram
+      </a>
+      
+      
+      
+      <a href="/tags/tgtalk/" class="badge h-6 no-underline hover:badge-primary">
+        Tgtalk
+      </a>
+      
+      
+      
+      <a href="/tags/toolooz/" class="badge h-6 no-underline hover:badge-primary">
+        Toolooz
+      </a>
+      
+      
+      
+      <a href="/tags/umami%E9%83%A8%E7%BD%B2/" class="badge h-6 no-underline hover:badge-primary">
+        Umami部署
+      </a>
+      
+      
+      
+      <a href="/tags/vercel/" class="badge h-6 no-underline hover:badge-primary">
+        Vercel
+      </a>
+      
+      
+      
+      <a href="/tags/waline%E9%83%A8%E7%BD%B2/" class="badge h-6 no-underline hover:badge-primary">
+        Waline部署
+      </a>
+      
+      
+      
+      <a href="/tags/%E5%90%8C%E6%AD%A5/" class="badge h-6 no-underline hover:badge-primary">
+        同步
+      </a>
+      
+      
+      
+      <span class="badge h-6 badge-primary">
+        托管平台
+      </span>
+      
+      
+      
+      <a href="/tags/%E6%A0%87%E9%A2%98%E8%AF%AD%E6%B3%95/" class="badge h-6 no-underline hover:badge-primary">
+        标题语法
+      </a>
+      
+      
+      
+      <a href="/tags/%E7%BD%91%E7%AB%99/" class="badge h-6 no-underline hover:badge-primary">
+        网站
+      </a>
+      
+      
+      
+      <a href="/tags/%E7%BD%91%E7%AB%99%E7%BB%9F%E8%AE%A1/" class="badge h-6 no-underline hover:badge-primary">
+        网站统计
+      </a>
+      
+      
+      
+      <a href="/tags/%E8%AE%BE%E8%AE%A1/" class="badge h-6 no-underline hover:badge-primary">
+        设计
+      </a>
+      
+      
+      
+      <a href="/tags/%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F/" class="badge h-6 no-underline hover:badge-primary">
+        评论系统
+      </a>
+      
+      
+      
+      <a href="/tags/%E8%AF%AD%E6%B3%95/" class="badge h-6 no-underline hover:badge-primary">
+        语法
+      </a>
+      
+      
+      
+      <a href="/tags/%E8%AF%B4%E8%AF%B4/" class="badge h-6 no-underline hover:badge-primary">
+        说说
+      </a>
+      
+      
+      
+      <a href="/tags/%E9%80%9F%E6%9F%A5%E8%A1%A8/" class="badge h-6 no-underline hover:badge-primary">
+        速查表
+      </a>
+      
+      
+      
+      <a href="/tags/%E9%9F%B3%E4%B9%90%E6%92%AD%E6%94%BE%E5%99%A8/" class="badge h-6 no-underline hover:badge-primary">
+        音乐播放器
+      </a>
+      
+      
+    </div>
+  </div>
+  
+  <div class="divider divider-vertical"></div>
+  
+  <div class="flex-1">
+    
+
+    
+      <div class="dream-zen-posts px-4 space-y-8">
+        
+          <a class="flex justify-between items-center gap-4" href="/posts/zyfx-drop/">
+  <div>
+    <h2 class="text-lg font-medium underline">DROP：便捷大文件分享与托管网站，免费享10GB空间免费部署</h2>
+    <span class="date text-base-content/60 text-sm">
+    
+      <span data-format="luxon">2025-05-09T20:48:57&#43;08:00</span>
+    
+    </span>
+  </div>
+
+  
+  <figure>
+    
+    <img class="w-24 max-w-none rounded-lg" src="https://cdn.jsdelivr.net/gh/kmfx/tuchuang@main/img/202505092245268.png" alt="DROP：便捷大文件分享与托管网站，免费享10GB空间免费部署" />
+    
+  </figure>
+  
+</a>
+
+        
+      </div>
+    
+
+    
+  </div>
+</div>
+
+
+
+            
+<footer class="flex justify-between items-center gap-2 max-w-[65ch] mx-auto px-4 md:px-0 py-12">
+
+  <div>
+  
+  <p>
+    © 2025 喵落阁
+  </p>
+  
+
+  
+  <p>欢迎来到克喵的博客~</p>
+  
+</div>
+
+  <div
+  x-data="{ icons: [
+    { name: 'sunny', status: 'n' },
+    { name: 'moon', status: 'y' },
+    { name: 'desktop', status: 'auto' }
+  ] }"
+  class="flex items-center gap-2 h-[32px] px-2 bg-base-100 border border-base-content/30 rounded-full"
+>
+  <template x-for="icon in icons">
+    <div
+      role="button"
+      tabindex="0"
+      :aria-label="'Select ' + icon.name + ' mode'"
+      class="group inline-flex justify-center items-center p-1 rounded-full cursor-pointer hover:bg-primary"
+      :class="$store.darkMode.icon() === icon.name && 'bg-primary'"
+      @click="$store.darkMode.toggle(icon.status)"
+    >
+      <ion-icon
+        :name="`${icon.name}-outline`"
+        class="group-hover:text-primary-content"
+        :class="$store.darkMode.icon() === icon.name && 'text-primary-content'"
+      >
+      </ion-icon>
+    </div>
+  </template>
+</div>
+
+</footer>
+
+          </div>
+        </div>
+        <div class="back">
+          <div class="container">
+            
+            <div class="max-w-[65ch] mt-8 mx-auto px-4">
+  
+  
+  
+  <div>
+    <div class="mb-4 text-lg font-medium">Me</div>
+
+    <div class="prose dark:prose-invert">
+      <h3 id="hello">Hello</h3>
+
+<div style="text-align: center; margin: 20px 0;">
+  <a href="https://blog-v3.kemeow.top/">
+    <img 
+      src="https://media.giphy.com/media/SWoSkN6DxTszqIKEqv/giphy.gif" 
+      alt="GIF Link" 
+      height="275" 
+      style="max-width: 100%; height: auto; display: inline-block;"
+    />
+  </a>
+</div>
+
+<ul>
+<li>🔭 I’m currently studying in Nanjing</li>
+<li>🌱 Current learning content: Automation Technology and Applications, front-end (sub), etc</li>
+<li>💬 You can ask me some questions about resources。</li>
+<li>📫 How to contact my email or official account: <a href="mailto:kemiaofx@163.com" target="_blank">kemiaofx@163.com</a>
+</li>
+<li>🍉 Active Community：<a href="https://blog-v3.kemeow.top" target="_blank">BLOG</a>
+ | <a href="https://t.me/KemiaoJun" target="_blank">Telegram</a>
+ |  <a href="https://x.com/kemiaosw/" target="_blank">X</a>
+</li>
+</ul>
+
+<p align="center">
+<img src="https://capsule-render.vercel.app/api?type=waving&color=timeGradient&height=300&&section=header&text=HI%20THERE!&fontSize=90&fontAlign=50&fontAlignY=30&desc=I%20AM%20KeMiao%20%F0%9F%91%8B&descAlign=50&descSize=30&descAlignY=60&animation=twinkling" />
+</p>
+
+<p align="center">
+<img src="https://readme-typing-svg.demolab.com?font=Orbitron&size=25&pause=1000&center=true&vCenter=true&random=false&width=600&lines=Welcome+to+my+About+page!;I+am+KeMiao+obsessed+with+programming!" />
+</p>
+
+<h3 id="-个人简介">👋 个人简介</h3>
+<hr>
+<p><a href="https://kemiao.online" target="_blank">个人主页</a>
+ | <a href="https://blog-v3.kemeow.top" target="_blank">博客站点</a>
+</p>
+<p>大家好！这里是克喵爱吃卤面的博客。致力于分享资源、生活日记和踩坑教程，代码水准一般，自动化专业大二学生，现于南京就读，普通的大学牛马。</p>
+<h3 id="关于我">关于我</h3>
+<hr>
+<ul>
+<li>🖥 <strong>个性:</strong> 开朗活泼，热爱学习，勤奋工作</li>
+<li>🖥 <strong>技能:</strong> 自动化技术与应用</li>
+<li>🖥 <strong>个人信息:</strong>
+<ul>
+<li>🧑 <strong>姓名:</strong> mcy</li>
+<li>🏫 <strong>学校:</strong> 南京工业职业技术大学，<a href="https://www.niit.edu.cn/" target="_blank">官方网站</a>
+</li>
+<li>🏛️ <strong>年级:</strong> 大二</li>
+<li>👷 <strong>职业:</strong> 学生</li>
+</ul>
+</li>
+<li>🖥 <strong>兴趣:</strong> 计算机，单机游戏，电子产品，数码产品，资源分享</li>
+<li>🖥 <strong>梦想:</strong> 咸鱼算不算？</li>
+</ul>
+<hr>
+<h3 id="-我的github数据">📈 我的GitHub数据</h3>
+
+<div align="center">
+  <img src="https://github-readme-stats.vercel.app/api?username=Kemeow815" alt="GitHub Stats" />
+</div>
+
+
+<p align="center">
+  <a>
+    <img src="https://github-readme-activity-graph.vercel.app/graph?username=Kemeow815&theme=github-compact&custom_title=Activity&radius=30&height=300" alt="Activity">
+  </a>
+</p>
+
+
+<div align="center">
+  <img 
+    src="https://github-immortality.vercel.app/api?username=Kemeow815" 
+    alt="修仙系列统计卡片" 
+    style="max-width: 100%; height: auto;" 
+  />
+</div>
+
+<hr>
+<h3 id="赞助">赞助</h3>
+<ul>
+<li>微信公众号：<a href="https://wechat.kemeow.top/" target="_blank">克喵的小站</a>
+</li>
+<li>赞助页面: <a href="https://donate.kemeow.top/" target="_blank">点我</a>
+</li>
+</ul>
+
+    </div>
+  </div>
+  <div class="divider divider-vertical"></div>
+  
+  
+
+  
+  
+  <div class="pb-4">
+  
+    <div class="mb-4 text-lg font-medium">Social Links</div>
+
+    <ul class="menu menu-horizontal flex-wrap w-full px-0 [&_ion-icon]:text-lg">
+  
+  <li>
+    <a href="mailto:me@kemiaosw.top" title="Email">
+      <ion-icon name="mail"></ion-icon>
+    </a>
+  </li>
+  
+
+  
+  <li>
+    <a href="https://github.com/Kemeow815" target="_blank" title="GitHub">
+      <ion-icon name="logo-github"></ion-icon>
+    </a>
+  </li>
+  
+  <li>
+    <a href="https://x.com/kemiaosw" target="_blank" title="X">
+      <ion-icon name="logo-x"></ion-icon>
+    </a>
+  </li>
+  
+  <li>
+    <a href="https://t.me/KemiaoJun" target="_blank" title="Telegram">
+      <ion-icon name="paper-plane-outline"></ion-icon>
+    </a>
+  </li>
+  
+  <li>
+    <a href="https://space.bilibili.com/3546643173477234" target="_blank" title="BiliBili">
+      <ion-icon name="logo-youtube"></ion-icon>
+    </a>
+  </li>
+  
+  <li>
+    <a href="https://music.163.com/#/playlist?id=13681647281" target="_blank" title="网易云音乐">
+      <ion-icon name="musical-notes-outline"></ion-icon>
+    </a>
+  </li>
+  
+</ul>
+
+  </div>
+  
+
+  
+</div>
+
+            
+
+            
+<footer class="flex justify-between items-center gap-2 max-w-[65ch] mx-auto px-4 md:px-0 py-12">
+
+  <div>
+  
+  <p>
+    © 2025 喵落阁
+  </p>
+  
+
+  
+  <p>欢迎来到克喵的博客~</p>
+  
+</div>
+
+  <div
+  x-data="{ icons: [
+    { name: 'sunny', status: 'n' },
+    { name: 'moon', status: 'y' },
+    { name: 'desktop', status: 'auto' }
+  ] }"
+  class="flex items-center gap-2 h-[32px] px-2 bg-base-100 border border-base-content/30 rounded-full"
+>
+  <template x-for="icon in icons">
+    <div
+      role="button"
+      tabindex="0"
+      :aria-label="'Select ' + icon.name + ' mode'"
+      class="group inline-flex justify-center items-center p-1 rounded-full cursor-pointer hover:bg-primary"
+      :class="$store.darkMode.icon() === icon.name && 'bg-primary'"
+      @click="$store.darkMode.toggle(icon.status)"
+    >
+      <ion-icon
+        :name="`${icon.name}-outline`"
+        class="group-hover:text-primary-content"
+        :class="$store.darkMode.icon() === icon.name && 'text-primary-content'"
+      >
+      </ion-icon>
+    </div>
+  </template>
+</div>
+
+</footer>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+  window.lightTheme = "emerald"
+  window.darkTheme = "forest"
+</script>
+
+
+
+
+
+  
+
+<script src="/js/main.min.js"></script>
+
+    
+
+
+<script
+  src="https://cdn.jsdelivr.net/npm/luxon@1.26.0"
+  integrity="sha256-4sbTzmCCW9LGrIh5OsN8V5Pfdad1F1MwhLAOyXKnsE0="
+  crossorigin="anonymous"
+></script>
+<script>
+  format()
+
+  function format() {
+    document.querySelectorAll('span[data-format="luxon"]').forEach(el => {
+      const date = el.textContent
+
+      el.textContent = luxon.DateTime.fromISO(date, { locale: "en" }).toFormat("2025年06月06日")
+    })
+  }
+</script>
+
+
+
+
+
+    
+
+    
+
+    
+
+    
+
+    <script type="module" src="https://cdn.jsdelivr.net/npm/ionicons@7.4.0/dist/ionicons/ionicons.esm.js" integrity="sha256-/IFmi82bIhdYWctu0UddSlJqpnzWm7Vh2C4CM32wF/k=" crossorigin="anonymous"></script>
+    <script nomodule src="https://cdn.jsdelivr.net/npm/ionicons@7.4.0/dist/ionicons/ionicons.js" integrity="sha256-mr7eJMX3VC3F7G32mk4oWp1C6a2tlMYxUdptfT7uKI8=" crossorigin="anonymous"></script>
+  </body>
+</html>

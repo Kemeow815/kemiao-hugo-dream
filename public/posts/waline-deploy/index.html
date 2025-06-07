@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="zh-Hans"
+  x-data
+  :class="$store.darkMode.class()"
+  :data-theme="$store.darkMode.theme()">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waline评论在Vercel部署 | 喵落阁</title>
+
+    
+  
+    <link href="/img/favicon.ico" rel="icon" type="image/x-icon" />
+  
+
+
+<link rel="canonical" href="https://blog-v4.kemiaosw.top/posts/waline-deploy/" />
+
+
+
+<meta name="author" content="克喵爱吃卤面" />
+<meta name="description" content="使用Waline评论我喜欢使用的部署方法(个人认为最简便)
+所需账号 一个Github账号 一个Vercel账号 一个leancloud账号(最好是国际服的，你有了Github难道还用大陆的吗？大陆的要备案，故在这里不阐述，末尾放原文链接) 在 leancloud 里创建数据库 登录或 注册LeanCloud 国际版 并进入 控制台点击左上角 创建应用并起一个你喜欢的名字 (请选择免费的开发版):
+进入应用，选择左下角的 设置 &gt; 应用 Key。你可以看到你的 APP ID,APP Key 和 Master Key。请记录它们，以便后续使用。
+在 Vercel 部署 点击上方按钮，跳转至 Vercel 进行 Server 端部署。
+如果你未登录的话，Vercel 会让你注册或登录，请使用 GitHub 账户进行快捷登录。
+输入一个你喜欢的 Vercel 项目名称并点击 Create 继续:
+此时 Vercel 会基于 Waline 模板帮助你新建并初始化仓库，仓库名为你之前输入的项目名。
+一两分钟后，满屏的烟花会庆祝你部署成功。此时点击 Go to Dashboard 可以跳转到应用的控制台。
+点击顶部的 Settings - Environment Variables 进入环境变量配置页，并配置三个环境变量 LEAN_ID, LEAN_KEY 和 LEAN_MASTER_KEY 。它们的值分别对应上一步在 LeanCloud 中获得的 APP ID, APP KEY, Master Key。
+" />
+
+
+<meta name="keywords" content="Waline部署,评论系统,Vercel">
+
+
+
+<meta name="generator" content="Hugo 0.147.7">
+
+
+<meta property="og:url" content="https://blog-v4.kemiaosw.top/posts/waline-deploy/">
+  <meta property="og:site_name" content="喵落阁">
+  <meta property="og:title" content="Waline评论在Vercel部署">
+  <meta property="og:description" content="使用Waline评论我喜欢使用的部署方法(个人认为最简便)
+所需账号 一个Github账号 一个Vercel账号 一个leancloud账号(最好是国际服的，你有了Github难道还用大陆的吗？大陆的要备案，故在这里不阐述，末尾放原文链接) 在 leancloud 里创建数据库 登录或 注册LeanCloud 国际版 并进入 控制台点击左上角 创建应用并起一个你喜欢的名字 (请选择免费的开发版):
+进入应用，选择左下角的 设置 &gt; 应用 Key。你可以看到你的 APP ID,APP Key 和 Master Key。请记录它们，以便后续使用。
+在 Vercel 部署 点击上方按钮，跳转至 Vercel 进行 Server 端部署。
+如果你未登录的话，Vercel 会让你注册或登录，请使用 GitHub 账户进行快捷登录。
+输入一个你喜欢的 Vercel 项目名称并点击 Create 继续:
+此时 Vercel 会基于 Waline 模板帮助你新建并初始化仓库，仓库名为你之前输入的项目名。
+一两分钟后，满屏的烟花会庆祝你部署成功。此时点击 Go to Dashboard 可以跳转到应用的控制台。
+点击顶部的 Settings - Environment Variables 进入环境变量配置页，并配置三个环境变量 LEAN_ID, LEAN_KEY 和 LEAN_MASTER_KEY 。它们的值分别对应上一步在 LeanCloud 中获得的 APP ID, APP KEY, Master Key。">
+  <meta property="og:locale" content="zh_Hans">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-04-14T08:08:57+08:00">
+    <meta property="article:modified_time" content="2025-04-14T08:25:57+08:00">
+    <meta property="article:tag" content="Waline部署">
+    <meta property="article:tag" content="评论系统">
+    <meta property="article:tag" content="Vercel">
+    <meta property="og:image" content="https://blog-v4.kemiaosw.top/img/kemiao.jpg">
+
+
+
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://blog-v4.kemiaosw.top/img/kemiao.jpg">
+  <meta name="twitter:title" content="Waline评论在Vercel部署">
+  <meta name="twitter:description" content="使用Waline评论我喜欢使用的部署方法(个人认为最简便)
+所需账号 一个Github账号 一个Vercel账号 一个leancloud账号(最好是国际服的，你有了Github难道还用大陆的吗？大陆的要备案，故在这里不阐述，末尾放原文链接) 在 leancloud 里创建数据库 登录或 注册LeanCloud 国际版 并进入 控制台点击左上角 创建应用并起一个你喜欢的名字 (请选择免费的开发版):
+进入应用，选择左下角的 设置 &gt; 应用 Key。你可以看到你的 APP ID,APP Key 和 Master Key。请记录它们，以便后续使用。
+在 Vercel 部署 点击上方按钮，跳转至 Vercel 进行 Server 端部署。
+如果你未登录的话，Vercel 会让你注册或登录，请使用 GitHub 账户进行快捷登录。
+输入一个你喜欢的 Vercel 项目名称并点击 Create 继续:
+此时 Vercel 会基于 Waline 模板帮助你新建并初始化仓库，仓库名为你之前输入的项目名。
+一两分钟后，满屏的烟花会庆祝你部署成功。此时点击 Go to Dashboard 可以跳转到应用的控制台。
+点击顶部的 Settings - Environment Variables 进入环境变量配置页，并配置三个环境变量 LEAN_ID, LEAN_KEY 和 LEAN_MASTER_KEY 。它们的值分别对应上一步在 LeanCloud 中获得的 APP ID, APP KEY, Master Key。">
+
+
+
+
+  
+
+<link rel="stylesheet" href="/css/output.min.css" />
+
+
+
+
+    
+
+
+<link rel="stylesheet" data-custom-syntax-highlighting />
+<style>
+  .chroma {
+    padding: 1em;
+    background-color: var(--dream-pre-bg, #f5f5f5);
+    border-radius: .5em;
+    overflow: auto;
+  }
+
+  html.dark .chroma {
+    background-color: var(--dream-pre-bg-dark, #262626);
+  }
+</style>
+
+
+
+
+
+
+
+
+
+    
+
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3/dist/cdn.min.js" integrity="sha256-PtHu0lJIiSHfZeNj1nFd6wTX+Squ255SGZ/fc8seCtM=" crossorigin="anonymous"></script>
+  </head>
+
+  <body x-data="{
+    flip: false,
+  }">
+    
+    <div id="dream-global-bg"></div>
+
+    
+<nav x-data="{ isSticky: false }"
+  x-init="window.addEventListener('scroll', () => { isSticky = window.scrollY > 30 })"
+  class="sticky top-0 z-30 mt-4 lg:mt-8 py-4"
+  :class="{ 'bg-base-100 shadow-lg dark:border-b dark:border-base-content/30': isSticky }">
+
+  
+  <div class="container flex justify-between max-w-[65ch] mx-auto px-4 md:px-0">
+  
+    <section class="flex items-center gap-4">
+      <div class="avatar cursor-pointer hover:avatar-online" @click="flip = !flip" title="Flip it!">
+        <div class="h-10 rounded-full">
+          <img src="https://cn.cravatar.com/avatar/1F6C8947D35A8186A1647009BA8BC5F2?size=256" alt="喵落阁" />
+        </div>
+      </div>
+
+      
+      <div>
+        
+        <a href="https://blog-v4.kemiaosw.top/" class="text-lg font-semibold cursor-pointer">
+          喵落阁
+        </a>
+        
+        
+        <div class="text-base-content/60 text-sm">愿你看清一切真相后，依旧热爱你的家人和朋友。</div>
+        
+      </div>
+      
+    </section>
+
+    
+    
+      
+    
+
+    <div class="dropdown dropdown-end sm:hidden">
+      <div tabindex="0" role="button" class="btn btn-ghost btn-square" aria-label="Select an option">
+        <ion-icon name="menu" class="text-2xl"></ion-icon>
+      </div>
+      <ul tabindex="0" class="dropdown-content menu w-36 bg-base-100 rounded-box z-1 shadow-md">
+        
+
+
+
+
+
+
+
+<li>
+  <div role="link" tabindex="0" class="inline-flex items-center p-2 cursor-pointer" @click="flip = !flip" title="About">
+    <ion-icon name="information-circle"></ion-icon>About</div>
+</li>
+
+
+
+
+
+
+
+<li>
+  <a class="group inline-flex items-center p-2 cursor-pointer" href="/search" title="Search">
+    <ion-icon name="search"></ion-icon>
+    Search
+  </a>
+</li>
+
+
+
+
+<li>
+  <a class="inline-flex items-center p-2 cursor-pointer" href="/index.xml" title="RSS">
+    <ion-icon name="logo-rss"></ion-icon>
+    RSS
+  </a>
+</li>
+
+
+
+
+<li>
+  <a class="inline-flex items-center p-2 cursor-pointer" href="/posts" title="Archives">
+    <ion-icon name="archive"></ion-icon>
+    Archives
+  </a>
+</li>
+
+
+
+
+<li>
+  <a class="inline-flex items-center p-2 cursor-pointer" href="/categories" title="All Categories">
+    <ion-icon name="grid"></ion-icon>
+    All Categories
+  </a>
+</li>
+
+
+
+
+<li>
+  <a class="inline-flex items-center p-2 cursor-pointer" href="/tags" title="All Tags">
+    <ion-icon name="pricetags"></ion-icon>
+    All Tags
+  </a>
+</li>
+
+
+
+
+
+
+      </ul>
+    </div>
+    <section class="hidden sm:flex sm:items-center sm:gap-2 md:gap-4">
+      
+
+      
+      
+      
+      
+
+
+
+
+<div role="link" tabindex="0" class="text-sm font-semibold cursor-pointer hover:underline" @click="flip = !flip" title="About">About</div>
+
+
+
+
+
+      
+      
+<a class="group inline-flex items-center p-2 rounded-full cursor-pointer hover:bg-primary" href="/search" title="Search">
+  <ion-icon class="group-hover:text-primary-content" name="search"></ion-icon>
+</a>
+
+
+      
+      
+<a class="group inline-flex items-center p-2 rounded-full cursor-pointer hover:bg-primary" href="/index.xml" title="RSS">
+  <ion-icon class="group-hover:text-primary-content" name="logo-rss"></ion-icon>
+</a>
+
+
+      
+
+      <div class="dropdown dropdown-end dropdown-hover">
+        <div tabindex="0" role="button" class="group inline-flex items-center p-2 rounded-full cursor-pointer hover:bg-primary" aria-label="Select an option">
+          <ion-icon class="group-hover:text-primary-content text-xl" name="menu"></ion-icon>
+        </div>
+        <ul tabindex="0" class="dropdown-content menu w-36 bg-base-100 rounded-box z-1 shadow-xl">
+          
+          
+<li>
+  <a class="inline-flex items-center p-2 cursor-pointer" href="/posts" title="Archives">
+    <ion-icon name="archive"></ion-icon>
+    Archives
+  </a>
+</li>
+
+
+          
+          
+<li>
+  <a class="inline-flex items-center p-2 cursor-pointer" href="/categories" title="All Categories">
+    <ion-icon name="grid"></ion-icon>
+    All Categories
+  </a>
+</li>
+
+
+          
+          
+<li>
+  <a class="inline-flex items-center p-2 cursor-pointer" href="/tags" title="All Tags">
+    <ion-icon name="pricetags"></ion-icon>
+    All Tags
+  </a>
+</li>
+
+
+          
+
+          
+        </ul>
+      </div>
+      
+    </section>
+  </div>
+</nav>
+
+
+    <div class="flip-container" :class="{ 'flip-it': flip }">
+      <div class="flipper">
+        <div class="front">
+          <div class="container">
+            
+<div class="lg:grid lg:grid-cols-4 gap-4 mt-4 px-4">
+  <div class="hidden lg:block">
+    
+  </div>
+
+  <div class="lg:col-span-2">
+    <article class="mx-auto prose prose-quoteless dark:prose-invert" id="dream-single-post-main" itemscope itemtype="http://schema.org/Article">
+      
+  <meta itemprop="name" content="Waline评论在Vercel部署">
+  <meta itemprop="description" content="使用Waline评论我喜欢使用的部署方法(个人认为最简便)
+所需账号 一个Github账号 一个Vercel账号 一个leancloud账号(最好是国际服的，你有了Github难道还用大陆的吗？大陆的要备案，故在这里不阐述，末尾放原文链接) 在 leancloud 里创建数据库 登录或 注册LeanCloud 国际版 并进入 控制台点击左上角 创建应用并起一个你喜欢的名字 (请选择免费的开发版):
+进入应用，选择左下角的 设置 &gt; 应用 Key。你可以看到你的 APP ID,APP Key 和 Master Key。请记录它们，以便后续使用。
+在 Vercel 部署 点击上方按钮，跳转至 Vercel 进行 Server 端部署。
+如果你未登录的话，Vercel 会让你注册或登录，请使用 GitHub 账户进行快捷登录。
+输入一个你喜欢的 Vercel 项目名称并点击 Create 继续:
+此时 Vercel 会基于 Waline 模板帮助你新建并初始化仓库，仓库名为你之前输入的项目名。
+一两分钟后，满屏的烟花会庆祝你部署成功。此时点击 Go to Dashboard 可以跳转到应用的控制台。
+点击顶部的 Settings - Environment Variables 进入环境变量配置页，并配置三个环境变量 LEAN_ID, LEAN_KEY 和 LEAN_MASTER_KEY 。它们的值分别对应上一步在 LeanCloud 中获得的 APP ID, APP KEY, Master Key。">
+  <meta itemprop="datePublished" content="2025-04-14T08:08:57+08:00">
+  <meta itemprop="dateModified" content="2025-04-14T08:25:57+08:00">
+  <meta itemprop="wordCount" content="199">
+  <meta itemprop="image" content="https://blog-v4.kemiaosw.top/img/kemiao.jpg">
+  <meta itemprop="keywords" content="Waline部署,评论系统,Vercel">
+
+      <header>
+        <h1 itemprop="headline">Waline评论在Vercel部署</h1>
+        <p class="text-sm">
+          
+            <span data-format="luxon">2025-04-14T08:08:57&#43;08:00</span>
+          
+
+          | <span>1 minute read</span>
+
+          
+          | <span>Updated at
+            
+              <span data-format="luxon">2025-04-14T08:25:57&#43;08:00</span>
+            </span>
+          
+        </p>
+
+        
+        <div class="flex justify-between">
+          
+            <div class="flex items-center">
+  
+  <div class="avatar mr-1">
+    <div class="w-8 rounded-full">
+      <img class="my-0!" src="/img/kemiao.jpg" alt="克喵爱吃卤面" />
+    </div>
+  </div>
+  
+
+  <span itemprop="author" itemscope itemtype="https://schema.org/Person">
+  
+    
+      <a itemprop="url" href="https://www.kemiao.online" target="_blank">
+        <span itemprop="name">克喵爱吃卤面</span>
+      </a>
+    
+  
+  </span>
+</div>
+
+          
+
+          <div class="flex items-center gap-2">
+  
+  
+
+  
+  
+  
+  
+    
+  
+  
+    <a class="group inline-flex items-center p-2 rounded-full cursor-pointer hover:bg-primary"
+      href="https://x.com/intent/post?text=Waline%e8%af%84%e8%ae%ba%e5%9c%a8Vercel%e9%83%a8%e7%bd%b2&amp;url=https://blog-v4.kemiaosw.top/posts/waline-deploy/" target="_blank" rel="noopener noreferrer"
+      title="Share on X">
+      <ion-icon class="group-hover:text-primary-content" name="logo-x"></ion-icon>
+    </a>
+  
+    <a class="group inline-flex items-center p-2 rounded-full cursor-pointer hover:bg-primary"
+      href="https://facebook.com/sharer/sharer.php?u=https://blog-v4.kemiaosw.top/posts/waline-deploy/" target="_blank" rel="noopener noreferrer"
+      title="Share on Facebook">
+      <ion-icon class="group-hover:text-primary-content" name="logo-facebook"></ion-icon>
+    </a>
+  
+    <a class="group inline-flex items-center p-2 rounded-full cursor-pointer hover:bg-primary"
+      href="https://wa.me/?text=Waline%e8%af%84%e8%ae%ba%e5%9c%a8Vercel%e9%83%a8%e7%bd%b2%20https://blog-v4.kemiaosw.top/posts/waline-deploy/" target="_blank" rel="noopener noreferrer"
+      title="Share on WhatsApp">
+      <ion-icon class="group-hover:text-primary-content" name="logo-whatsapp"></ion-icon>
+    </a>
+  
+
+  
+  
+</div>
+
+        </div>
+      </header>
+
+      <section id="dream-single-post-content" itemprop="articleBody">
+        
+          <img class="w-full z-30" src="https://i1.wp.com/dev.ruom.top/i/2025/04/14/073842.webp" alt="Waline评论在Vercel部署" />
+        
+
+        
+
+
+  <blockquote>
+    <p>使用Waline评论我喜欢使用的部署方法(个人认为最简便)</p>
+  </blockquote>
+
+<h2 id="所需账号">所需账号</h2>
+<ol>
+<li>一个Github账号</li>
+<li>一个Vercel账号</li>
+<li>一个leancloud账号(最好是国际服的，你有了Github难道还用大陆的吗？大陆的要备案，故在这里不阐述，末尾放原文链接)</li>
+</ol>
+<hr>
+<h2 id="在-leancloud-里创建数据库">在 leancloud 里创建数据库</h2>
+<ol>
+<li>
+<p><a href="https://console.leancloud.app/login" target="_blank">登录</a>
+ 或 <a href="https://console.leancloud.app/register" target="_blank">注册</a>
+ <code>LeanCloud 国际版</code> 并进入 <a href="https://console.leancloud.app/apps" target="_blank">控制台</a>
+</p>
+</li>
+<li>
+<p>点击左上角 <a href="https://console.leancloud.app/apps" target="_blank">创建应用</a>
+ 并起一个你喜欢的名字 (请选择免费的开发版):</p>
+<p><img src="https://s2.loli.net/2025/04/14/7FOYbvS8MlQXe52.png" alt="创建应用"></p>
+</li>
+<li>
+<p>进入应用，选择左下角的 <code>设置</code> &gt; <code>应用 Key</code>。你可以看到你的 <code>APP ID</code>,<code>APP Key</code> 和 <code>Master Key</code>。请记录它们，以便后续使用。</p>
+<p><img src="https://s2.loli.net/2025/04/14/c1Vltvsm8GYXSbf.png" alt="ID 和 Key"></p>
+</li>
+</ol>
+<hr>
+<h2 id="在-vercel-部署">在 Vercel 部署</h2>
+<p><a href="https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fwalinejs%2Fwaline%2Ftree%2Fmain%2Fexample" target="_blank"><img src="https://cdn.jsdelivr.net/gh/kmfx/tuchuang@main/img/vercel.svg" alt="Vercel"></a>
+</p>
+<ol>
+<li>
+<p>点击上方按钮，跳转至 Vercel 进行 Server 端部署。</p>
+<p>如果你未登录的话，Vercel 会让你注册或登录，请使用 GitHub 账户进行快捷登录。</p>
+</li>
+<li>
+<p>输入一个你喜欢的 Vercel 项目名称并点击 <code>Create</code> 继续:</p>
+<p><img src="https://s2.loli.net/2025/04/14/XauJLO7hfcWVx2Y.png" alt="创建项目"></p>
+</li>
+<li>
+<p>此时 Vercel 会基于 Waline 模板帮助你新建并初始化仓库，仓库名为你之前输入的项目名。</p>
+<p><img src="https://s2.loli.net/2025/04/14/Q7tExaML3XKlf12.png" alt="deploy"></p>
+<p>一两分钟后，满屏的烟花会庆祝你部署成功。此时点击 <code>Go to Dashboard</code> 可以跳转到应用的控制台。</p>
+<p><img src="https://s2.loli.net/2025/04/14/HqfvwV6GdrFROSZ.png" alt="deploy"></p>
+</li>
+<li>
+<p>点击顶部的 <code>Settings</code> - <code>Environment Variables</code> 进入环境变量配置页，并配置三个环境变量 <code>LEAN_ID</code>, <code>LEAN_KEY</code> 和 <code>LEAN_MASTER_KEY</code> 。它们的值分别对应上一步在 LeanCloud 中获得的 <code>APP ID</code>, <code>APP KEY</code>, <code>Master Key</code>。</p>
+<p><img src="https://s2.loli.net/2025/04/14/9laMFio1umnjB6g.png" alt="设置环境变量"></p>
+</li>
+<li>
+<p>环境变量配置完成之后点击顶部的 <code>Deployments</code> 点击顶部最新的一次部署右侧的 <code>Redeploy</code> 按钮进行重新部署。该步骤是为了让刚才设置的环境变量生效。</p>
+<p><img src="https://s2.loli.net/2025/04/14/WkVxeRub73aIHBX.png" alt="redeploy"></p>
+</li>
+<li>
+<p>此时会跳转到 <code>Overview</code> 界面开始部署，等待片刻后 <code>STATUS</code> 会变成 <code>Ready</code>。此时请点击 <code>Visit</code> ，即可跳转到部署好的网站地址，此地址即为你的服务端地址。</p>
+<p><img src="https://s2.loli.net/2025/04/14/xM8rEezGTqFQNCY.png" alt="redeploy success"></p>
+</li>
+</ol>
+<h2 id="绑定域名-可选">绑定域名 (可选)</h2>
+<ol>
+<li>
+<p>点击顶部的 <code>Settings</code> - <code>Domains</code> 进入域名配置页</p>
+</li>
+<li>
+<p>输入需要绑定的域名并点击 <code>Add</code></p>
+<p><img src="https://s2.loli.net/2025/04/14/9wHyLEWQOtvz1fA.png" alt="Add domain"></p>
+</li>
+<li>
+<p>在域名服务器商处添加新的 <code>CNAME</code> 解析记录</p>
+<table>
+  <thead>
+      <tr>
+          <th>Type</th>
+          <th>Name</th>
+          <th>Value</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>CNAME</td>
+          <td>example</td>
+          <td>cname.vercel-dns.com(国区的可用 cname-china.vercel-dns.com)</td>
+      </tr>
+  </tbody>
+</table>
+</li>
+<li>
+<p>等待生效，你可以通过自己的域名来访问了。</p>
+<ul>
+<li>评论系统：example.yourdomain.com</li>
+<li>评论管理：example.yourdomain.com/ui</li>
+</ul>
+<p><img src="https://s2.loli.net/2025/04/14/4BOxqfs16erKTMV.png" alt="success"></p>
+</li>
+</ol>
+<h2 id="html-引入-客户端">HTML 引入 (客户端)</h2>
+<p>在你的网页中进行如下设置:</p>
+<ol>
+<li>
+<p>导入 Waline 样式 <code>https://unpkg.com/@waline/client@v3/dist/waline.css</code>。</p>
+</li>
+<li>
+<p>创建 <code>&lt;script&gt;</code> 标签使用来自 <code>https://unpkg.com/@waline/client@v3/dist/waline.js</code> 的 <code>init()</code> 函数初始化，并传入必要的 <code>el</code> 与 <code>serverURL</code> 选项。</p>
+<ul>
+<li><code>el</code> 选项是 Waline 渲染使用的元素，你可以设置一个字符串形式的 CSS 选择器或者一个 HTMLElement 对象。</li>
+<li><code>serverURL</code> 是服务端的地址，即上一步获取到的值。</li>
+</ul>
+</li>
+</ol>
+<pre tabindex="0"><code>   &lt;head&gt;
+     &lt;!-- ... --&gt;
+     &lt;link
+       rel=&#34;stylesheet&#34;
+       href=&#34;https://unpkg.com/@waline/client@v3/dist/waline.css&#34;
+     /&gt;
+     &lt;!-- ... --&gt;
+   &lt;/head&gt;
+   &lt;body&gt;
+     &lt;!-- ... --&gt;
+     &lt;div id=&#34;waline&#34;&gt;&lt;/div&gt;
+     &lt;script type=&#34;module&#34;&gt;
+       import { init } from &#39;https://unpkg.com/@waline/client@v3/dist/waline.js&#39;;
+
+       init({
+         el: &#39;#waline&#39;,
+         serverURL: &#39;https://your-domain.vercel.app&#39;,
+       });
+     &lt;/script&gt;
+   &lt;/body&gt;
+</code></pre><ol>
+<li>评论服务此时就会在你的网站上成功运行。</li>
+</ol>
+<h2 id="评论管理-管理端">评论管理 (管理端)</h2>
+<ol>
+<li>部署完成后，请访问 <code>&lt;serverURL&gt;/ui/register</code> 进行注册。首个注册的人会被设定成管理员。</li>
+<li>管理员登陆后，即可看到评论管理界面。在这里可以修改、标记或删除评论。</li>
+<li>用户也可通过评论框注册账号，登陆后会跳转到自己的档案页。</li>
+</ol>
+<h2 id="视频教程">视频教程</h2>
+<p>以下是热心用户制作的视频教程，以上操作不清楚的也可以参考一二。</p>
+<h3 id="waline-部署教程快速上手">Waline 部署教程（快速上手）</h3>
+
+
+
+  <blockquote>
+    <p>UP 主：<a href="https://space.bilibili.com/381992209" target="_blank">rickroll 摇</a>
+</p>
+  </blockquote>
+
+
+<iframe src="//player.bilibili.com/player.html?isOutside=true&aid=603711299&bvid=BV1pB4y1E7fp&cid=851182849&p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+
+<h3 id="使用-vercel-简单地部署-waline-评论系统">使用 Vercel 简单地部署 Waline 评论系统</h3>
+
+
+
+  <blockquote>
+    <p>UP 主：<a href="https://space.bilibili.com/355877984" target="_blank">岚天呀</a>
+</p>
+  </blockquote>
+
+
+<iframe src="//player.bilibili.com/player.html?isOutside=true&aid=986143204&bvid=BV1Ft4y1A73f&cid=851363812&p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+
+<hr>
+<h2 id="以上为部分修改原文">以上为部分修改原文</h2>
+<p>原文链接: <a href="https://waline.js.org/guide/get-started/" target="_blank">https://waline.js.org/guide/get-started/</a>
+</p>
+
+
+        
+      </section>
+
+      
+      <div class="divider"></div>
+      <div class="flex flex-col md:flex-row justify-between gap-4 py-4">
+        
+        <a role="button" class="btn btn-outline h-12" href="/posts/tgtalk-deploy/" title="tgtalk免费部署">
+          <ion-icon name="chevron-back"></ion-icon>
+          <div class="inline-flex flex-col items-start">
+            <span class="text-base-content/60 text-xs font-normal">Previous page</span>
+            <span class="max-w-48 truncate">tgtalk免费部署</span>
+          </div>
+        </a>
+        
+
+        
+        <a role="button" class="btn btn-outline h-12" href="/posts/umami-deploy/" title="Umami博客访问统计Vercel&#43;Cloudflare Workers部署">
+          <div class="inline-flex flex-col items-end">
+            <span class="text-base-content/60 text-xs font-normal">Next page</span>
+            <span class="max-w-48 truncate">Umami博客访问统计Vercel&#43;Cloudflare Workers部署</span>
+          </div>
+          <ion-icon name="chevron-forward"></ion-icon>
+        </a>
+        
+      </div>
+      
+
+      
+      <div class="divider"></div>
+
+      <section class="space-y-4">
+        
+
+
+<template x-if="['localhost', '127.0.0.1'].indexOf(window.location.hostname) == -1">
+  <article>
+    <script
+      src="https://utteranc.es/client.js"
+      repo="Kemeow815/kemiao-hugo-dream"
+      issue-term="og:title"
+      theme="github-light"
+      crossorigin="anonymous"
+      async>
+    </script>
+  </article>
+</template>
+
+
+
+
+
+
+
+
+      </section>
+      
+    </article>
+  </div>
+
+  <div
+    x-data="tocHighlighter()"
+    @scroll.window="debouncedScroll"
+    class="hidden lg:flex lg:flex-col lg:items-end">
+    
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#所需账号">所需账号</a></li>
+    <li><a href="#在-leancloud-里创建数据库">在 leancloud 里创建数据库</a></li>
+    <li><a href="#在-vercel-部署">在 Vercel 部署</a></li>
+    <li><a href="#绑定域名-可选">绑定域名 (可选)</a></li>
+    <li><a href="#html-引入-客户端">HTML 引入 (客户端)</a></li>
+    <li><a href="#评论管理-管理端">评论管理 (管理端)</a></li>
+    <li><a href="#视频教程">视频教程</a>
+      <ul>
+        <li><a href="#waline-部署教程快速上手">Waline 部署教程（快速上手）</a></li>
+        <li><a href="#使用-vercel-简单地部署-waline-评论系统">使用 Vercel 简单地部署 Waline 评论系统</a></li>
+      </ul>
+    </li>
+    <li><a href="#以上为部分修改原文">以上为部分修改原文</a></li>
+  </ul>
+</nav>
+    
+  </div>
+</div>
+
+
+            
+<footer class="flex justify-between items-center gap-2 max-w-[65ch] mx-auto px-4 md:px-0 py-12">
+
+  <div>
+  
+  <p>
+    © 2025 喵落阁
+  </p>
+  
+
+  
+  <p>欢迎来到克喵的博客~</p>
+  
+</div>
+
+  <div
+  x-data="{ icons: [
+    { name: 'sunny', status: 'n' },
+    { name: 'moon', status: 'y' },
+    { name: 'desktop', status: 'auto' }
+  ] }"
+  class="flex items-center gap-2 h-[32px] px-2 bg-base-100 border border-base-content/30 rounded-full"
+>
+  <template x-for="icon in icons">
+    <div
+      role="button"
+      tabindex="0"
+      :aria-label="'Select ' + icon.name + ' mode'"
+      class="group inline-flex justify-center items-center p-1 rounded-full cursor-pointer hover:bg-primary"
+      :class="$store.darkMode.icon() === icon.name && 'bg-primary'"
+      @click="$store.darkMode.toggle(icon.status)"
+    >
+      <ion-icon
+        :name="`${icon.name}-outline`"
+        class="group-hover:text-primary-content"
+        :class="$store.darkMode.icon() === icon.name && 'text-primary-content'"
+      >
+      </ion-icon>
+    </div>
+  </template>
+</div>
+
+</footer>
+
+          </div>
+        </div>
+        <div class="back">
+          <div class="container">
+            
+            <div class="max-w-[65ch] mt-8 mx-auto px-4">
+  
+  
+  
+  <div>
+    <div class="mb-4 text-lg font-medium">Me</div>
+
+    <div class="prose dark:prose-invert">
+      <h3 id="hello">Hello</h3>
+
+<div style="text-align: center; margin: 20px 0;">
+  <a href="https://blog-v3.kemeow.top/">
+    <img 
+      src="https://media.giphy.com/media/SWoSkN6DxTszqIKEqv/giphy.gif" 
+      alt="GIF Link" 
+      height="275" 
+      style="max-width: 100%; height: auto; display: inline-block;"
+    />
+  </a>
+</div>
+
+<ul>
+<li>🔭 I’m currently studying in Nanjing</li>
+<li>🌱 Current learning content: Automation Technology and Applications, front-end (sub), etc</li>
+<li>💬 You can ask me some questions about resources。</li>
+<li>📫 How to contact my email or official account: <a href="mailto:kemiaofx@163.com" target="_blank">kemiaofx@163.com</a>
+</li>
+<li>🍉 Active Community：<a href="https://blog-v3.kemeow.top" target="_blank">BLOG</a>
+ | <a href="https://t.me/KemiaoJun" target="_blank">Telegram</a>
+ |  <a href="https://x.com/kemiaosw/" target="_blank">X</a>
+</li>
+</ul>
+
+<p align="center">
+<img src="https://capsule-render.vercel.app/api?type=waving&color=timeGradient&height=300&&section=header&text=HI%20THERE!&fontSize=90&fontAlign=50&fontAlignY=30&desc=I%20AM%20KeMiao%20%F0%9F%91%8B&descAlign=50&descSize=30&descAlignY=60&animation=twinkling" />
+</p>
+
+<p align="center">
+<img src="https://readme-typing-svg.demolab.com?font=Orbitron&size=25&pause=1000&center=true&vCenter=true&random=false&width=600&lines=Welcome+to+my+About+page!;I+am+KeMiao+obsessed+with+programming!" />
+</p>
+
+<h3 id="-个人简介">👋 个人简介</h3>
+<hr>
+<p><a href="https://kemiao.online" target="_blank">个人主页</a>
+ | <a href="https://blog-v3.kemeow.top" target="_blank">博客站点</a>
+</p>
+<p>大家好！这里是克喵爱吃卤面的博客。致力于分享资源、生活日记和踩坑教程，代码水准一般，自动化专业大二学生，现于南京就读，普通的大学牛马。</p>
+<h3 id="关于我">关于我</h3>
+<hr>
+<ul>
+<li>🖥 <strong>个性:</strong> 开朗活泼，热爱学习，勤奋工作</li>
+<li>🖥 <strong>技能:</strong> 自动化技术与应用</li>
+<li>🖥 <strong>个人信息:</strong>
+<ul>
+<li>🧑 <strong>姓名:</strong> mcy</li>
+<li>🏫 <strong>学校:</strong> 南京工业职业技术大学，<a href="https://www.niit.edu.cn/" target="_blank">官方网站</a>
+</li>
+<li>🏛️ <strong>年级:</strong> 大二</li>
+<li>👷 <strong>职业:</strong> 学生</li>
+</ul>
+</li>
+<li>🖥 <strong>兴趣:</strong> 计算机，单机游戏，电子产品，数码产品，资源分享</li>
+<li>🖥 <strong>梦想:</strong> 咸鱼算不算？</li>
+</ul>
+<hr>
+<h3 id="-我的github数据">📈 我的GitHub数据</h3>
+
+<div align="center">
+  <img src="https://github-readme-stats.vercel.app/api?username=Kemeow815" alt="GitHub Stats" />
+</div>
+
+
+<p align="center">
+  <a>
+    <img src="https://github-readme-activity-graph.vercel.app/graph?username=Kemeow815&theme=github-compact&custom_title=Activity&radius=30&height=300" alt="Activity">
+  </a>
+</p>
+
+
+<div align="center">
+  <img 
+    src="https://github-immortality.vercel.app/api?username=Kemeow815" 
+    alt="修仙系列统计卡片" 
+    style="max-width: 100%; height: auto;" 
+  />
+</div>
+
+<hr>
+<h3 id="赞助">赞助</h3>
+<ul>
+<li>微信公众号：<a href="https://wechat.kemeow.top/" target="_blank">克喵的小站</a>
+</li>
+<li>赞助页面: <a href="https://donate.kemeow.top/" target="_blank">点我</a>
+</li>
+</ul>
+
+    </div>
+  </div>
+  <div class="divider divider-vertical"></div>
+  
+  
+
+  
+  
+  <div class="pb-4">
+  
+    <div class="mb-4 text-lg font-medium">Social Links</div>
+
+    <ul class="menu menu-horizontal flex-wrap w-full px-0 [&_ion-icon]:text-lg">
+  
+  <li>
+    <a href="mailto:me@kemiaosw.top" title="Email">
+      <ion-icon name="mail"></ion-icon>
+    </a>
+  </li>
+  
+
+  
+  <li>
+    <a href="https://github.com/Kemeow815" target="_blank" title="GitHub">
+      <ion-icon name="logo-github"></ion-icon>
+    </a>
+  </li>
+  
+  <li>
+    <a href="https://x.com/kemiaosw" target="_blank" title="X">
+      <ion-icon name="logo-x"></ion-icon>
+    </a>
+  </li>
+  
+  <li>
+    <a href="https://t.me/KemiaoJun" target="_blank" title="Telegram">
+      <ion-icon name="paper-plane-outline"></ion-icon>
+    </a>
+  </li>
+  
+  <li>
+    <a href="https://space.bilibili.com/3546643173477234" target="_blank" title="BiliBili">
+      <ion-icon name="logo-youtube"></ion-icon>
+    </a>
+  </li>
+  
+  <li>
+    <a href="https://music.163.com/#/playlist?id=13681647281" target="_blank" title="网易云音乐">
+      <ion-icon name="musical-notes-outline"></ion-icon>
+    </a>
+  </li>
+  
+</ul>
+
+  </div>
+  
+
+  
+</div>
+
+            
+
+            
+<footer class="flex justify-between items-center gap-2 max-w-[65ch] mx-auto px-4 md:px-0 py-12">
+
+  <div>
+  
+  <p>
+    © 2025 喵落阁
+  </p>
+  
+
+  
+  <p>欢迎来到克喵的博客~</p>
+  
+</div>
+
+  <div
+  x-data="{ icons: [
+    { name: 'sunny', status: 'n' },
+    { name: 'moon', status: 'y' },
+    { name: 'desktop', status: 'auto' }
+  ] }"
+  class="flex items-center gap-2 h-[32px] px-2 bg-base-100 border border-base-content/30 rounded-full"
+>
+  <template x-for="icon in icons">
+    <div
+      role="button"
+      tabindex="0"
+      :aria-label="'Select ' + icon.name + ' mode'"
+      class="group inline-flex justify-center items-center p-1 rounded-full cursor-pointer hover:bg-primary"
+      :class="$store.darkMode.icon() === icon.name && 'bg-primary'"
+      @click="$store.darkMode.toggle(icon.status)"
+    >
+      <ion-icon
+        :name="`${icon.name}-outline`"
+        class="group-hover:text-primary-content"
+        :class="$store.darkMode.icon() === icon.name && 'text-primary-content'"
+      >
+      </ion-icon>
+    </div>
+  </template>
+</div>
+
+</footer>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+  window.lightTheme = "emerald"
+  window.darkTheme = "forest"
+</script>
+
+
+
+
+
+  
+
+<script src="/js/main.min.js"></script>
+
+    
+
+
+  <script
+  src="https://cdn.jsdelivr.net/npm/luxon@1.26.0"
+  integrity="sha256-4sbTzmCCW9LGrIh5OsN8V5Pfdad1F1MwhLAOyXKnsE0="
+  crossorigin="anonymous"
+></script>
+<script>
+  format()
+
+  function format() {
+    document.querySelectorAll('span[data-format="luxon"]').forEach(el => {
+      const date = el.textContent
+
+      el.textContent = luxon.DateTime.fromISO(date, { locale: "en" }).toFormat("2025年06月06日")
+    })
+  }
+</script>
+
+
+
+<script>
+    window.customSyntaxHighlighting = {
+      light: "/css/syntax-light.min.css",
+      dark: "/css/syntax-dark.min.css"
+    }
+
+    document.addEventListener('alpine:initialized', () => {
+      var isDark = Alpine.store('darkMode').isDark()
+      var customSyntaxHighlightingUrl = isDark ? window.customSyntaxHighlighting.dark : window.customSyntaxHighlighting.light
+
+      document
+        .querySelector('link[data-custom-syntax-highlighting]')
+        .setAttribute('href', customSyntaxHighlightingUrl)
+    })
+  </script>
+
+
+
+
+  
+
+<script src="/js/toc.min.js"></script>
+
+
+  
+    <script type="module">
+      import mediumZoom from 'https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/+esm';
+      mediumZoom('#dream-single-post-content img', {
+        background: 'oklch(var(--b1))',
+        margin: 24,
+      })
+    </script>
+  
+
+
+
+
+
+
+    
+
+    
+
+    
+
+    
+
+    <script type="module" src="https://cdn.jsdelivr.net/npm/ionicons@7.4.0/dist/ionicons/ionicons.esm.js" integrity="sha256-/IFmi82bIhdYWctu0UddSlJqpnzWm7Vh2C4CM32wF/k=" crossorigin="anonymous"></script>
+    <script nomodule src="https://cdn.jsdelivr.net/npm/ionicons@7.4.0/dist/ionicons/ionicons.js" integrity="sha256-mr7eJMX3VC3F7G32mk4oWp1C6a2tlMYxUdptfT7uKI8=" crossorigin="anonymous"></script>
+  </body>
+</html>

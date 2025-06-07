@@ -1,0 +1,13 @@
+socials = [
+  { href = "https://github.com/Kemeow815", target="_blank", icon = "logo-github", title = "GitHub" },
+  { href = "https://x.com/kemiaosw", target="_blank", icon = "logo-x", title = "X" },
+  { href = "https://t.me/KemiaoJun", target="_blank", icon = "paper-plane-outline", title = "Telegram" },
+  { href = "https://space.bilibili.com/3546643173477234", target="_blank", icon = "logo-youtube", title = "BiliBili" },
+  { href = "https://music.163.com/#/playlist?id=13681647281", target="_blank", icon = "musical-notes-outline", title = "网易云音乐" },
+  # { href = "https://twitter.com/g1eny0ung", target="_blank", icon = "logo-twitter", title = "Twitter" },
+  # { href = "https://facebook.com/g1eny0ung", target="_blank", icon = "logo-facebook", title = "Facebook" },
+  # { href = "https://instagram.com/g1eny0ung", target="_blank", icon = "logo-instagram", title = "Instagram" },
+  # { href = "https://www.linkedin.com/in/g1eny0ung", target="_blank", icon = "logo-linkedin", title = "Linkedin" },
+  # { href = "https://stackoverflow.com/users/5676489/g1eny0ung", target="_blank", icon = "logo-stackoverflow", title = "stack overflow" },
+  # { href = "https://codepen.io/g1eny0ung", target="_blank", icon = "logo-codepen", title = "Codepen" },
+]

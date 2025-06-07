@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>语法 on 喵落阁</title>
+    <link>https://blog-v4.kemiaosw.top/tags/%E8%AF%AD%E6%B3%95/</link>
+    <description>Recent content in 语法 on 喵落阁</description>
+    <generator>Hugo</generator>
+    <language>zh-Hans</language>
+    <lastBuildDate>Tue, 11 Feb 2025 19:11:57 +0800</lastBuildDate>
+    <atom:link href="https://blog-v4.kemiaosw.top/tags/%E8%AF%AD%E6%B3%95/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Markdown-速查表</title>
+      <link>https://blog-v4.kemiaosw.top/posts/markdown-sulanbiao/</link>
+      <pubDate>Tue, 11 Feb 2025 18:15:57 +0800</pubDate>
+      <guid>https://blog-v4.kemiaosw.top/posts/markdown-sulanbiao/</guid>
+      <description>&lt;blockquote&gt;&#xD;&#xA;    &lt;p&gt;原文位置: &lt;a href=&#34;https://markdown.com.cn/cheat-sheet.html#%E6%80%BB%E8%A7%88&#34; target=&#34;_blank&#34;&gt;https://markdown.com.cn/cheat-sheet.html#%E6%80%BB%E8%A7%88&lt;/a&gt;&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;  &lt;/blockquote&gt;&#xD;&#xA;&#xD;&#xA;&lt;h1 id=&#34;总览&#34;&gt;总览&lt;/h1&gt;&#xA;&lt;p&gt;Markdown 速查表提供了所有 &lt;strong&gt;Markdown&lt;/strong&gt;&#xA;语法元素的基本解释。如果你想了解某些语法元素的更多信息，请参阅更详细的&#xA;&lt;strong&gt;基本语法&lt;/strong&gt; 和 &lt;strong&gt;扩展语法&lt;/strong&gt;.&lt;/p&gt;&#xA;&lt;h2 id=&#34;基本语法&#34;&gt;基本语法&lt;/h2&gt;&#xA;&lt;p&gt;这些是 &lt;strong&gt;John Gruber&lt;/strong&gt; 的原始设计文档中列出的元素。所有 &lt;strong&gt;Markdown&lt;/strong&gt;&#xA;应用程序都支持这些元素。&lt;/p&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;元素&lt;/th&gt;&#xA;          &lt;th&gt;Markdown 语法&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;标题（Heading）&lt;/td&gt;&#xA;          &lt;td&gt;# H1 一级标题&lt;br&gt; ## H2 二级标题&lt;br&gt; ### H3 三级标题&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;粗体（Bold）&lt;/td&gt;&#xA;          &lt;td&gt;**bold text**&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;斜体（Italic）&lt;/td&gt;&#xA;          &lt;td&gt;*italicized text*&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;引用块（Blockquote）&lt;/td&gt;&#xA;          &lt;td&gt;&amp;gt; blockquote&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;有序列表（Ordered List）&lt;/td&gt;&#xA;          &lt;td&gt;1. First item&lt;br&gt; 2. Second item&lt;br&gt; 3. Third item&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;无序列表（Unordered List）&lt;/td&gt;&#xA;          &lt;td&gt;- First item&lt;br&gt; - Second item&lt;br&gt; - Third item&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;代码（Code）&lt;/td&gt;&#xA;          &lt;td&gt;`code`&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;分隔线（Horizontal Rule）&lt;/td&gt;&#xA;          &lt;td&gt;&lt;code&gt;---&lt;/code&gt;&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;链接（Link）&lt;/td&gt;&#xA;          &lt;td&gt;[title](&lt;a href=&#34;https://www.example.com&#34; target=&#34;_blank&#34;&gt;https://www.example.com&lt;/a&gt;&#xD;&#xA;)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;图片（Image）&lt;/td&gt;&#xA;          &lt;td&gt;![alt text](image.jpg)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;h2 id=&#34;扩展语法&#34;&gt;扩展语法&lt;/h2&gt;&#xA;&lt;p&gt;这些元素通过添加额外的功能扩展了基本语法。但是，并非所有 &lt;strong&gt;Markdown&lt;/strong&gt;&#xA;应用程序都支持这些元素。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

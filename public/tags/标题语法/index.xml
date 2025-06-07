@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>标题语法 on 喵落阁</title>
+    <link>https://blog-v4.kemiaosw.top/tags/%E6%A0%87%E9%A2%98%E8%AF%AD%E6%B3%95/</link>
+    <description>Recent content in 标题语法 on 喵落阁</description>
+    <generator>Hugo</generator>
+    <language>zh-Hans</language>
+    <lastBuildDate>Wed, 12 Feb 2025 19:11:57 +0800</lastBuildDate>
+    <atom:link href="https://blog-v4.kemiaosw.top/tags/%E6%A0%87%E9%A2%98%E8%AF%AD%E6%B3%95/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Markdown-标题语法 | 技术分享</title>
+      <link>https://blog-v4.kemiaosw.top/posts/markdown-biaotiyufa/</link>
+      <pubDate>Wed, 12 Feb 2025 18:15:57 +0800</pubDate>
+      <guid>https://blog-v4.kemiaosw.top/posts/markdown-biaotiyufa/</guid>
+      <description>&lt;blockquote&gt;&#xD;&#xA;    &lt;p&gt;原文位置: &lt;a href=&#34;https://markdown.com.cn/basic-syntax/headings.html&#34; target=&#34;_blank&#34;&gt;https://markdown.com.cn/basic-syntax/headings.html&lt;/a&gt;&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;  &lt;/blockquote&gt;&#xD;&#xA;&#xD;&#xA;&lt;h1 id=&#34;markdown-标题语法&#34;&gt;Markdown 标题语法&lt;/h1&gt;&#xA;&lt;p&gt;要创建标题，请在单词或短语前面添加井号 (#) 。&lt;code&gt;#&lt;/code&gt; 的数量代表了标题的级别。例如，添加三个 &lt;code&gt;#&lt;/code&gt; 表示创建一个三级标题 (&lt;code&gt;&amp;lt;h3&amp;gt;&lt;/code&gt;) (例如：&lt;code&gt;### My Header&lt;/code&gt;)。&lt;/p&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Markdown语法&lt;/th&gt;&#xA;          &lt;th&gt;HTML&lt;/th&gt;&#xA;          &lt;th&gt;预览效果&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;&lt;code&gt;# Heading level 1&lt;/code&gt;&lt;/td&gt;&#xA;          &lt;td&gt;&amp;lt;h1&amp;gt;Heading level 1&amp;lt;/h1&amp;gt;&lt;/td&gt;&#xA;          &lt;td&gt;&lt;h1&gt;Heading level 1&lt;/h1&gt;&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;&lt;code&gt;## Heading level 2&lt;/code&gt;&lt;/td&gt;&#xA;          &lt;td&gt;&amp;lt;h2&amp;gt;Heading level 1&amp;lt;/h2&amp;gt;&lt;/td&gt;&#xA;          &lt;td&gt;&lt;h2&gt;Heading level 2&lt;/h2&gt;&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;&lt;code&gt;### Heading level 3&lt;/code&gt;&lt;/td&gt;&#xA;          &lt;td&gt;&amp;lt;h3&amp;gt;Heading level 1&amp;lt;/h3&amp;gt;&lt;/td&gt;&#xA;          &lt;td&gt;&lt;h3&gt;Heading level 3&lt;/h3&gt;&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;&lt;code&gt;#### Heading level 4&lt;/code&gt;&lt;/td&gt;&#xA;          &lt;td&gt;&amp;lt;h4&amp;gt;Heading level 1&amp;lt;/h4&amp;gt;&lt;/td&gt;&#xA;          &lt;td&gt;&lt;h4&gt;Heading level 4&lt;/h4&gt;&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;&lt;code&gt;##### Heading level 5&lt;/code&gt;&lt;/td&gt;&#xA;          &lt;td&gt;&amp;lt;h5&amp;gt;Heading level 1&amp;lt;/h5&amp;gt;&lt;/td&gt;&#xA;          &lt;td&gt;&lt;h5&gt;Heading level 5&lt;/h5&gt;&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;&lt;code&gt;###### Heading level 6&lt;/code&gt;&lt;/td&gt;&#xA;          &lt;td&gt;&amp;lt;h6&amp;gt;Heading level 1&amp;lt;/h6&amp;gt;&lt;/td&gt;&#xA;          &lt;td&gt;&lt;h6&gt;Heading level 6&lt;/h6&gt;&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;h2 id=&#34;可选语法&#34;&gt;可选语法&lt;/h2&gt;&#xA;&lt;p&gt;还可以在文本下方添加任意数量的 == 号来标识一级标题，或者 &amp;ndash; 号来标识二级标题。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

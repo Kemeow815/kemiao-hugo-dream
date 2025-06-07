@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="zh-Hans"
+  x-data
+  :class="$store.darkMode.class()"
+  :data-theme="$store.darkMode.theme()">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Umami博客访问统计Vercel&#43;Cloudflare Workers部署 | 喵落阁</title>
+
+    
+  
+    <link href="/img/favicon.ico" rel="icon" type="image/x-icon" />
+  
+
+
+<link rel="canonical" href="https://blog-v4.kemiaosw.top/posts/umami-deploy/" />
+
+
+
+<meta name="author" content="克喵爱吃卤面" />
+<meta name="description" content="第一部分：Vercel&#43;Umami 第一步
+1.1 Fork​umami到自己的Github仓库
+1.2 创建项目 第二步
+2.1 创建Vercel账号，这里我就省略了，因为GitHub可以直接进行授权即可。
+2.2 在你授权以后，首先创建Postgres数据库，直接一路下一步，创建好就行，可以给下面的连接复制出来
+点击Copy Snippet​,就可以，记住在粘贴的时候是我画线里面的部分，双引号都不需要 ，因为要设置环境变量。
+2.3 在创建好数据库以后，回到主页面的Overview​，然后右上角有一个Add New​选择添加Project​，选择你Fork​的umami​，添加即可。 2.4 设置环境变量，DATABASE_URL​和HASH_SALT​和TRACKER_SCRIPT_NAME​，其中DATABASE_URL​的值就是上面划线的部分，其他的两个环境变量都是对应的值是String自己可以随意定义。 2.5 设置好以后点击Deploy​，等待大约两分钟左右，自动部署完成，部署完成以后可以通过下图种面板上面给的链接可以直接访问。
+" />
+
+
+<meta name="keywords" content="Umami部署,网站统计,Vercel,Cloudflare Workers">
+
+
+
+<meta name="generator" content="Hugo 0.147.7">
+
+
+<meta property="og:url" content="https://blog-v4.kemiaosw.top/posts/umami-deploy/">
+  <meta property="og:site_name" content="喵落阁">
+  <meta property="og:title" content="Umami博客访问统计Vercel&#43;Cloudflare Workers部署">
+  <meta property="og:description" content="第一部分：Vercel&#43;Umami 第一步
+1.1 Fork​umami到自己的Github仓库
+1.2 创建项目 第二步
+2.1 创建Vercel账号，这里我就省略了，因为GitHub可以直接进行授权即可。
+2.2 在你授权以后，首先创建Postgres数据库，直接一路下一步，创建好就行，可以给下面的连接复制出来
+点击Copy Snippet​,就可以，记住在粘贴的时候是我画线里面的部分，双引号都不需要 ，因为要设置环境变量。
+2.3 在创建好数据库以后，回到主页面的Overview​，然后右上角有一个Add New​选择添加Project​，选择你Fork​的umami​，添加即可。 2.4 设置环境变量，DATABASE_URL​和HASH_SALT​和TRACKER_SCRIPT_NAME​，其中DATABASE_URL​的值就是上面划线的部分，其他的两个环境变量都是对应的值是String自己可以随意定义。 2.5 设置好以后点击Deploy​，等待大约两分钟左右，自动部署完成，部署完成以后可以通过下图种面板上面给的链接可以直接访问。">
+  <meta property="og:locale" content="zh_Hans">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-04-06T23:25:57+08:00">
+    <meta property="article:modified_time" content="2025-04-06T23:25:57+08:00">
+    <meta property="article:tag" content="Umami部署">
+    <meta property="article:tag" content="网站统计">
+    <meta property="article:tag" content="Vercel">
+    <meta property="article:tag" content="Cloudflare Workers">
+    <meta property="og:image" content="https://blog-v4.kemiaosw.top/img/kemiao.jpg">
+
+
+
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://blog-v4.kemiaosw.top/img/kemiao.jpg">
+  <meta name="twitter:title" content="Umami博客访问统计Vercel&#43;Cloudflare Workers部署">
+  <meta name="twitter:description" content="第一部分：Vercel&#43;Umami 第一步
+1.1 Fork​umami到自己的Github仓库
+1.2 创建项目 第二步
+2.1 创建Vercel账号，这里我就省略了，因为GitHub可以直接进行授权即可。
+2.2 在你授权以后，首先创建Postgres数据库，直接一路下一步，创建好就行，可以给下面的连接复制出来
+点击Copy Snippet​,就可以，记住在粘贴的时候是我画线里面的部分，双引号都不需要 ，因为要设置环境变量。
+2.3 在创建好数据库以后，回到主页面的Overview​，然后右上角有一个Add New​选择添加Project​，选择你Fork​的umami​，添加即可。 2.4 设置环境变量，DATABASE_URL​和HASH_SALT​和TRACKER_SCRIPT_NAME​，其中DATABASE_URL​的值就是上面划线的部分，其他的两个环境变量都是对应的值是String自己可以随意定义。 2.5 设置好以后点击Deploy​，等待大约两分钟左右，自动部署完成，部署完成以后可以通过下图种面板上面给的链接可以直接访问。">
+
+
+
+
+  
+
+<link rel="stylesheet" href="/css/output.min.css" />
+
+
+
+
+    
+
+
+<link rel="stylesheet" data-custom-syntax-highlighting />
+<style>
+  .chroma {
+    padding: 1em;
+    background-color: var(--dream-pre-bg, #f5f5f5);
+    border-radius: .5em;
+    overflow: auto;
+  }
+
+  html.dark .chroma {
+    background-color: var(--dream-pre-bg-dark, #262626);
+  }
+</style>
+
+
+
+
+
+
+
+
+
+    
+
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3/dist/cdn.min.js" integrity="sha256-PtHu0lJIiSHfZeNj1nFd6wTX+Squ255SGZ/fc8seCtM=" crossorigin="anonymous"></script>
+  </head>
+
+  <body x-data="{
+    flip: false,
+  }">
+    
+    <div id="dream-global-bg"></div>
+
+    
+<nav x-data="{ isSticky: false }"
+  x-init="window.addEventListener('scroll', () => { isSticky = window.scrollY > 30 })"
+  class="sticky top-0 z-30 mt-4 lg:mt-8 py-4"
+  :class="{ 'bg-base-100 shadow-lg dark:border-b dark:border-base-content/30': isSticky }">
+
+  
+  <div class="container flex justify-between max-w-[65ch] mx-auto px-4 md:px-0">
+  
+    <section class="flex items-center gap-4">
+      <div class="avatar cursor-pointer hover:avatar-online" @click="flip = !flip" title="Flip it!">
+        <div class="h-10 rounded-full">
+          <img src="https://cn.cravatar.com/avatar/1F6C8947D35A8186A1647009BA8BC5F2?size=256" alt="喵落阁" />
+        </div>
+      </div>
+
+      
+      <div>
+        
+        <a href="https://blog-v4.kemiaosw.top/" class="text-lg font-semibold cursor-pointer">
+          喵落阁
+        </a>
+        
+        
+        <div class="text-base-content/60 text-sm">愿你看清一切真相后，依旧热爱你的家人和朋友。</div>
+        
+      </div>
+      
+    </section>
+
+    
+    
+      
+    
+
+    <div class="dropdown dropdown-end sm:hidden">
+      <div tabindex="0" role="button" class="btn btn-ghost btn-square" aria-label="Select an option">
+        <ion-icon name="menu" class="text-2xl"></ion-icon>
+      </div>
+      <ul tabindex="0" class="dropdown-content menu w-36 bg-base-100 rounded-box z-1 shadow-md">
+        
+
+
+
+
+
+
+
+<li>
+  <div role="link" tabindex="0" class="inline-flex items-center p-2 cursor-pointer" @click="flip = !flip" title="About">
+    <ion-icon name="information-circle"></ion-icon>About</div>
+</li>
+
+
+
+
+
+
+
+<li>
+  <a class="group inline-flex items-center p-2 cursor-pointer" href="/search" title="Search">
+    <ion-icon name="search"></ion-icon>
+    Search
+  </a>
+</li>
+
+
+
+
+<li>
+  <a class="inline-flex items-center p-2 cursor-pointer" href="/index.xml" title="RSS">
+    <ion-icon name="logo-rss"></ion-icon>
+    RSS
+  </a>
+</li>
+
+
+
+
+<li>
+  <a class="inline-flex items-center p-2 cursor-pointer" href="/posts" title="Archives">
+    <ion-icon name="archive"></ion-icon>
+    Archives
+  </a>
+</li>
+
+
+
+
+<li>
+  <a class="inline-flex items-center p-2 cursor-pointer" href="/categories" title="All Categories">
+    <ion-icon name="grid"></ion-icon>
+    All Categories
+  </a>
+</li>
+
+
+
+
+<li>
+  <a class="inline-flex items-center p-2 cursor-pointer" href="/tags" title="All Tags">
+    <ion-icon name="pricetags"></ion-icon>
+    All Tags
+  </a>
+</li>
+
+
+
+
+
+
+      </ul>
+    </div>
+    <section class="hidden sm:flex sm:items-center sm:gap-2 md:gap-4">
+      
+
+      
+      
+      
+      
+
+
+
+
+<div role="link" tabindex="0" class="text-sm font-semibold cursor-pointer hover:underline" @click="flip = !flip" title="About">About</div>
+
+
+
+
+
+      
+      
+<a class="group inline-flex items-center p-2 rounded-full cursor-pointer hover:bg-primary" href="/search" title="Search">
+  <ion-icon class="group-hover:text-primary-content" name="search"></ion-icon>
+</a>
+
+
+      
+      
+<a class="group inline-flex items-center p-2 rounded-full cursor-pointer hover:bg-primary" href="/index.xml" title="RSS">
+  <ion-icon class="group-hover:text-primary-content" name="logo-rss"></ion-icon>
+</a>
+
+
+      
+
+      <div class="dropdown dropdown-end dropdown-hover">
+        <div tabindex="0" role="button" class="group inline-flex items-center p-2 rounded-full cursor-pointer hover:bg-primary" aria-label="Select an option">
+          <ion-icon class="group-hover:text-primary-content text-xl" name="menu"></ion-icon>
+        </div>
+        <ul tabindex="0" class="dropdown-content menu w-36 bg-base-100 rounded-box z-1 shadow-xl">
+          
+          
+<li>
+  <a class="inline-flex items-center p-2 cursor-pointer" href="/posts" title="Archives">
+    <ion-icon name="archive"></ion-icon>
+    Archives
+  </a>
+</li>
+
+
+          
+          
+<li>
+  <a class="inline-flex items-center p-2 cursor-pointer" href="/categories" title="All Categories">
+    <ion-icon name="grid"></ion-icon>
+    All Categories
+  </a>
+</li>
+
+
+          
+          
+<li>
+  <a class="inline-flex items-center p-2 cursor-pointer" href="/tags" title="All Tags">
+    <ion-icon name="pricetags"></ion-icon>
+    All Tags
+  </a>
+</li>
+
+
+          
+
+          
+        </ul>
+      </div>
+      
+    </section>
+  </div>
+</nav>
+
+
+    <div class="flip-container" :class="{ 'flip-it': flip }">
+      <div class="flipper">
+        <div class="front">
+          <div class="container">
+            
+<div class="lg:grid lg:grid-cols-4 gap-4 mt-4 px-4">
+  <div class="hidden lg:block">
+    
+  </div>
+
+  <div class="lg:col-span-2">
+    <article class="mx-auto prose prose-quoteless dark:prose-invert" id="dream-single-post-main" itemscope itemtype="http://schema.org/Article">
+      
+  <meta itemprop="name" content="Umami博客访问统计Vercel&#43;Cloudflare Workers部署">
+  <meta itemprop="description" content="第一部分：Vercel&#43;Umami 第一步
+1.1 Fork​umami到自己的Github仓库
+1.2 创建项目 第二步
+2.1 创建Vercel账号，这里我就省略了，因为GitHub可以直接进行授权即可。
+2.2 在你授权以后，首先创建Postgres数据库，直接一路下一步，创建好就行，可以给下面的连接复制出来
+点击Copy Snippet​,就可以，记住在粘贴的时候是我画线里面的部分，双引号都不需要 ，因为要设置环境变量。
+2.3 在创建好数据库以后，回到主页面的Overview​，然后右上角有一个Add New​选择添加Project​，选择你Fork​的umami​，添加即可。 2.4 设置环境变量，DATABASE_URL​和HASH_SALT​和TRACKER_SCRIPT_NAME​，其中DATABASE_URL​的值就是上面划线的部分，其他的两个环境变量都是对应的值是String自己可以随意定义。 2.5 设置好以后点击Deploy​，等待大约两分钟左右，自动部署完成，部署完成以后可以通过下图种面板上面给的链接可以直接访问。">
+  <meta itemprop="datePublished" content="2025-04-06T23:25:57+08:00">
+  <meta itemprop="dateModified" content="2025-04-06T23:25:57+08:00">
+  <meta itemprop="wordCount" content="306">
+  <meta itemprop="image" content="https://blog-v4.kemiaosw.top/img/kemiao.jpg">
+  <meta itemprop="keywords" content="Umami部署,网站统计,Vercel,Cloudflare Workers">
+
+      <header>
+        <h1 itemprop="headline">Umami博客访问统计Vercel&#43;Cloudflare Workers部署</h1>
+        <p class="text-sm">
+          
+            <span data-format="luxon">2025-04-06T23:25:57&#43;08:00</span>
+          
+
+          | <span>2 minute read</span>
+
+          
+          | <span>Updated at
+            
+              <span data-format="luxon">2025-04-06T23:25:57&#43;08:00</span>
+            </span>
+          
+        </p>
+
+        
+        <div class="flex justify-between">
+          
+            <div class="flex items-center">
+  
+  <div class="avatar mr-1">
+    <div class="w-8 rounded-full">
+      <img class="my-0!" src="/img/kemiao.jpg" alt="克喵爱吃卤面" />
+    </div>
+  </div>
+  
+
+  <span itemprop="author" itemscope itemtype="https://schema.org/Person">
+  
+    
+      <a itemprop="url" href="https://www.kemiao.online" target="_blank">
+        <span itemprop="name">克喵爱吃卤面</span>
+      </a>
+    
+  
+  </span>
+</div>
+
+          
+
+          <div class="flex items-center gap-2">
+  
+  
+
+  
+  
+  
+  
+    
+  
+  
+    <a class="group inline-flex items-center p-2 rounded-full cursor-pointer hover:bg-primary"
+      href="https://x.com/intent/post?text=Umami%e5%8d%9a%e5%ae%a2%e8%ae%bf%e9%97%ae%e7%bb%9f%e8%ae%a1Vercel&#43;Cloudflare%20Workers%e9%83%a8%e7%bd%b2&amp;url=https://blog-v4.kemiaosw.top/posts/umami-deploy/" target="_blank" rel="noopener noreferrer"
+      title="Share on X">
+      <ion-icon class="group-hover:text-primary-content" name="logo-x"></ion-icon>
+    </a>
+  
+    <a class="group inline-flex items-center p-2 rounded-full cursor-pointer hover:bg-primary"
+      href="https://facebook.com/sharer/sharer.php?u=https://blog-v4.kemiaosw.top/posts/umami-deploy/" target="_blank" rel="noopener noreferrer"
+      title="Share on Facebook">
+      <ion-icon class="group-hover:text-primary-content" name="logo-facebook"></ion-icon>
+    </a>
+  
+    <a class="group inline-flex items-center p-2 rounded-full cursor-pointer hover:bg-primary"
+      href="https://wa.me/?text=Umami%e5%8d%9a%e5%ae%a2%e8%ae%bf%e9%97%ae%e7%bb%9f%e8%ae%a1Vercel&#43;Cloudflare%20Workers%e9%83%a8%e7%bd%b2%20https://blog-v4.kemiaosw.top/posts/umami-deploy/" target="_blank" rel="noopener noreferrer"
+      title="Share on WhatsApp">
+      <ion-icon class="group-hover:text-primary-content" name="logo-whatsapp"></ion-icon>
+    </a>
+  
+
+  
+  
+</div>
+
+        </div>
+      </header>
+
+      <section id="dream-single-post-content" itemprop="articleBody">
+        
+          <img class="w-full z-30" src="https://i1.wp.com/dev.ruom.top/i/2025/04/07/951842.webp" alt="Umami博客访问统计Vercel&#43;Cloudflare Workers部署" />
+        
+
+        <h2 id="第一部分vercelumami">第一部分：Vercel+Umami</h2>
+<ol>
+<li>
+<p>第一步<br>
+1.1 <!-- raw HTML omitted -->Fork<!-- raw HTML omitted -->​<a href="https://github.com/umami-software/umami" target="_blank">umami</a>
+到自己的Github仓库</p>
+<p><img src="https://s2.loli.net/2025/04/06/c4xDVNrsBpTM8YZ.webp" alt=""></p>
+<p>1.2 创建项目
+<img src="https://s2.loli.net/2025/04/06/GX9OdivuxF5pJzH.webp" alt=""></p>
+</li>
+<li>
+<p>第二步</p>
+</li>
+</ol>
+<p>　2.1 创建<a href="https://vercel.com/login" target="_blank">Vercel</a>
+账号，这里我就省略了，因为GitHub可以直接进行授权即可。</p>
+<p>2.2 在你授权以后，首先创建<!-- raw HTML omitted -->Postgres<!-- raw HTML omitted -->数据库，直接一路下一步，创建好就行，可以给下面的连接复制出来</p>
+<p><img src="https://s2.loli.net/2025/04/06/K69FpfmjZxcu3Ad.webp" alt=""></p>
+<p><img src="https://s2.loli.net/2025/04/06/7OieEKGht4kgSux.webp" alt=""></p>
+<p>　　点击<!-- raw HTML omitted -->Copy Snippet<!-- raw HTML omitted -->​,就可以，记住在粘贴的时候是我画线里面的部分，双引号都不需要 ，因为要设置环境变量。</p>
+<p>　　	2.3 在创建好数据库以后，回到主页面的<!-- raw HTML omitted -->Overview<!-- raw HTML omitted -->​，然后右上角有一个<!-- raw HTML omitted -->Add New<!-- raw HTML omitted -->​选择添加<!-- raw HTML omitted -->Project<!-- raw HTML omitted -->​，选择你<!-- raw HTML omitted -->Fork<!-- raw HTML omitted -->​的<!-- raw HTML omitted -->umami<!-- raw HTML omitted -->​，添加即可。
+2.4 设置环境变量，<code>DATABASE_URL</code>​和<code>HASH_SALT</code>​和<code>TRACKER_SCRIPT_NAME</code>​，其中<code>DATABASE_URL</code>​的值就是上面划线的部分，其他的两个环境变量都是对应的值是String自己可以随意定义。
+　　	2.5 设置好以后点击<!-- raw HTML omitted -->Deploy<!-- raw HTML omitted -->​，等待大约两分钟左右，自动部署完成，部署完成以后可以通过下图种面板上面给的链接可以直接访问。</p>
+<p><img src="https://s2.loli.net/2025/04/06/ahX2wHLrfYAD7ZW.webp" alt=""></p>
+<p>　　	2.6 打开以后会跳出登录地址，默认的登录密码是<!-- raw HTML omitted -->adminumami<!-- raw HTML omitted -->​，登录进去以后，设置给自己密码修改了，然后就是设置里面添加网站，给你要统计的网站添加进去，到此，别人访问你的网站你可以通过面板看到统计数据了。</p>
+<h2 id="第二部分umamicloudflare-worker这一部分主要是让你的博客上面能展示的访问数据效果如下">第二部分：Umami+Cloudflare worker这一部分主要是让你的博客上面能展示的访问数据，效果如下：</h2>
+<p><img src="https://s2.loli.net/2025/04/06/fR71aFG4oMD29Pz.webp" alt="image"></p>
+<ol>
+<li>注册<!-- raw HTML omitted -->CloudFlare<!-- raw HTML omitted -->​账号，然后进去以后，选择<!-- raw HTML omitted -->Workers<!-- raw HTML omitted -->​和<!-- raw HTML omitted -->Pages<!-- raw HTML omitted -->​，点击<!-- raw HTML omitted -->创建<!-- raw HTML omitted -->​，再点击<!-- raw HTML omitted -->部署<!-- raw HTML omitted -->​</li>
+</ol>
+<p><img src="https://s2.loli.net/2025/04/06/CYojqdGHkiuFepQ.webp" alt=""></p>
+<p><img src="https://s2.loli.net/2025/04/06/6B2rXxk4Uu71GQC.webp" alt=""></p>
+<p>　　部署以后，进去点击编辑代码，将里面的代码进行替换：</p>
+<pre tabindex="0"><code>addEventListener(&#39;fetch&#39;, event =&gt; {
+  event.respondWith(handleRequest(event));
+});
+
+const API_BASE_URL = &#39;https://umami.yourdomain.com&#39;;  // 替换你的刚才部署的umami的域名
+const TOKEN = &#39;your_token&#39;; // 获取的token
+const WEBSITE_ID = &#39;your_website_id&#39;; // 在umami添加网站的 webstie id
+const CACHE_KEY = &#39;umami_cache&#39;;
+const CACHE_TIME = 600; // Cache time in seconds
+
+async function fetchUmamiData(startAt, endAt) {
+  const url = `${API_BASE_URL}/api/websites/${WEBSITE_ID}/stats?startAt=${startAt}&amp;endAt=${endAt}`;
+  const response = await fetch(url, {
+    headers: {
+      &#39;Authorization&#39;: `Bearer ${TOKEN}`,
+      &#39;Content-Type&#39;: &#39;application/json&#39;
+    }
+  });
+
+  if (!response.ok) {
+    console.error(`Error fetching data: ${response.statusText}`);
+    return null;
+  }
+
+  return response.json();
+}
+
+async function handleRequest(event) {
+  const cache = await caches.open(CACHE_KEY);
+  const cachedResponse = await cache.match(event.request);
+
+  if (cachedResponse) {
+    return cachedResponse;
+  }
+
+  const now = Date.now();
+  const todayStart = new Date(now).setHours(0, 0, 0, 0);
+  const yesterdayStart = new Date(now - 86400000).setHours(0, 0, 0, 0);
+  const lastMonthStart = new Date(now).setMonth(new Date(now).getMonth() - 1);
+  const lastYearStart = new Date(now).setFullYear(new Date(now).getFullYear() - 1);
+
+  const [todayData, yesterdayData, lastMonthData, lastYearData] = await Promise.all([
+    fetchUmamiData(todayStart, now),
+    fetchUmamiData(yesterdayStart, todayStart),
+    fetchUmamiData(lastMonthStart, now),
+    fetchUmamiData(lastYearStart, now)
+  ]);
+
+  const responseData = {
+    today_uv: todayData?.visitors?.value ?? null,
+    today_pv: todayData?.pageviews?.value ?? null,
+    yesterday_uv: yesterdayData?.visitors?.value ?? null,
+    yesterday_pv: yesterdayData?.pageviews?.value ?? null,
+    last_month_pv: lastMonthData?.pageviews?.value ?? null,
+    last_year_pv: lastYearData?.pageviews?.value ?? null
+  };
+
+  const jsonResponse = new Response(JSON.stringify(responseData), {
+    headers: {
+      &#39;Content-Type&#39;: &#39;application/json&#39;,
+      &#39;Access-Control-Allow-Origin&#39;: &#39;*&#39;,
+      &#39;Access-Control-Allow-Methods&#39;: &#39;GET, POST, PUT, DELETE, OPTIONS&#39;,
+      &#39;Access-Control-Allow-Headers&#39;: &#39;Content-Type, Authorization&#39;
+    }
+  });
+
+  event.waitUntil(cache.put(event.request, jsonResponse.clone()));
+
+  return jsonResponse;
+}
+</code></pre><p>　　但是里面有几个比较重要的参数需要修改<code>API_BASE_URL</code>​、<code>TOKEN</code>​、<code>WEBSITE_ID</code>​其中<code>API_BASE_URL</code>​和<code>WEBSITE_ID</code>​已经是有的，<code>WEBSITE_ID</code>​在<!-- raw HTML omitted -->umami<!-- raw HTML omitted -->​中的设置，选择你已经添加好的网站，点击<!-- raw HTML omitted -->编辑<!-- raw HTML omitted -->​，会出现网站的<code>WEBSITE_ID</code>​：</p>
+<p><img src="https://s2.loli.net/2025/04/06/eFHEYB45nQOUAML.webp" alt=""></p>
+<p>　　	2.2 获取<!-- raw HTML omitted -->token<!-- raw HTML omitted -->​，在想<!-- raw HTML omitted -->api<!-- raw HTML omitted -->​测试网站，<a href="https://hoppscotch.io/" target="_blank">hoppscotch</a>
+，跳转到这个页面以后，如下图所示</p>
+<p><img src="https://s2.loli.net/2025/04/06/vXrQmtpu4HdIasN.webp" alt=""></p>
+<p>　　		2.2.1 请求方式选择<!-- raw HTML omitted -->post<!-- raw HTML omitted -->​，链接填写方式是：</p>
+<pre tabindex="0"><code>https://你的umami域名或者是链接/api/auth/login
+</code></pre><p>　　		2.2.2 请求体选择<!-- raw HTML omitted -->Body<!-- raw HTML omitted -->​参数格式选择<!-- raw HTML omitted -->application/json<!-- raw HTML omitted -->​</p>
+<pre tabindex="0"><code>{
+ &#34;username&#34;:&#34;用户名&#34;,
+ &#34;password&#34;:&#34;密码&#34;
+}
+</code></pre><p>　　		2.2.3 返回结果中<!-- raw HTML omitted -->token<!-- raw HTML omitted -->​里面的内容就是需要的<!-- raw HTML omitted -->token<!-- raw HTML omitted -->​</p>
+<pre tabindex="0"><code>{
+  &#34;token&#34;: &#34;你的token&#34;, # 你需要记录下来的内容
+  &#34;user&#34;: {
+    &#34;id&#34;: &#34;41e2b680-648e-4b09-bcd7-3e2b10c06264&#34;,
+    &#34;username&#34;: &#34;admin&#34;,
+    &#34;role&#34;: &#34;admin&#34;,
+    &#34;createdAt&#34;: &#34;2024-11-12T09:18:12.766Z&#34;,
+    &#34;isAdmin&#34;: true
+  }
+}
+</code></pre><p>　　到这里，你部署<code>api</code>​所需要的所有参数内容都已经有了，给替换进去即可。</p>
+<p>　　	2.3 测试在你部署好以后，会有一个链接，当然你如果是用<!-- raw HTML omitted -->cloudflare<!-- raw HTML omitted -->​代理你的域名，可以直接进行关联。</p>
+<p><img src="https://s2.loli.net/2025/04/07/IPCS2rhLbiaX3G8.webp" alt=""></p>
+<p>　　然后点击或则是复制粘贴到浏览器，请求以后会出来下面的结果：</p>
+<p><img src="https://s2.loli.net/2025/04/07/M9wsiYKBoGyLI8T.webp" alt=""></p>
+<p>　　如果没有结果，建议你先去你部署的umami面板里面看看有没有数据，有数据的情况下，这里请求都会有数据的，清理浏览器缓存开代理在测试。</p>
+<h2 id="第三部分添加博客统计">第三部分：添加博客统计</h2>
+<p>　　将数据添加到<!-- raw HTML omitted -->about<!-- raw HTML omitted -->​页面</p>
+<pre tabindex="0"><code>tj: # 统计
+  provider: custom # custom
+  url: 你的数据接口地址
+  img: https://7.isyangs.cn/1/65eb2e9109826-1.png # 背景
+  desc: # 卡片左下角描述
+</code></pre><p>　　配置完成~</p>
+<p>　　感谢<a href="https://blog.starsharbor.com/" target="_blank">starsharbor</a>
+大佬博客的指导，<a href="https://blog.starsharbor.com/posts/solitude-about_umami/" target="_blank">原文</a>
+</p>
+<hr>
+<h2 id="作者原文">作者原文</h2>
+<p>作者: Couture<br>
+链接: <a href="https://www.coutures.top/posts/27233.html" target="_blank">https://www.coutures.top/posts/27233.html</a>
+<br>
+来源: Couture<br>
+著作权归作者所有。 商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+
+
+        
+      </section>
+
+      
+      <div class="divider"></div>
+      <div class="flex flex-col md:flex-row justify-between gap-4 py-4">
+        
+        <a role="button" class="btn btn-outline h-12" href="/posts/waline-deploy/" title="Waline评论在Vercel部署">
+          <ion-icon name="chevron-back"></ion-icon>
+          <div class="inline-flex flex-col items-start">
+            <span class="text-base-content/60 text-xs font-normal">Previous page</span>
+            <span class="max-w-48 truncate">Waline评论在Vercel部署</span>
+          </div>
+        </a>
+        
+
+        
+        <a role="button" class="btn btn-outline h-12" href="/posts/git-tongbu/" title="Git 同步上游仓库的更新">
+          <div class="inline-flex flex-col items-end">
+            <span class="text-base-content/60 text-xs font-normal">Next page</span>
+            <span class="max-w-48 truncate">Git 同步上游仓库的更新</span>
+          </div>
+          <ion-icon name="chevron-forward"></ion-icon>
+        </a>
+        
+      </div>
+      
+
+      
+      <div class="divider"></div>
+
+      <section class="space-y-4">
+        
+
+
+<template x-if="['localhost', '127.0.0.1'].indexOf(window.location.hostname) == -1">
+  <article>
+    <script
+      src="https://utteranc.es/client.js"
+      repo="Kemeow815/kemiao-hugo-dream"
+      issue-term="og:title"
+      theme="github-light"
+      crossorigin="anonymous"
+      async>
+    </script>
+  </article>
+</template>
+
+
+
+
+
+
+
+
+      </section>
+      
+    </article>
+  </div>
+
+  <div
+    x-data="tocHighlighter()"
+    @scroll.window="debouncedScroll"
+    class="hidden lg:flex lg:flex-col lg:items-end">
+    
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#第一部分vercelumami">第一部分：Vercel+Umami</a></li>
+    <li><a href="#第二部分umamicloudflare-worker这一部分主要是让你的博客上面能展示的访问数据效果如下">第二部分：Umami+Cloudflare worker这一部分主要是让你的博客上面能展示的访问数据，效果如下：</a></li>
+    <li><a href="#第三部分添加博客统计">第三部分：添加博客统计</a></li>
+    <li><a href="#作者原文">作者原文</a></li>
+  </ul>
+</nav>
+    
+  </div>
+</div>
+
+
+            
+<footer class="flex justify-between items-center gap-2 max-w-[65ch] mx-auto px-4 md:px-0 py-12">
+
+  <div>
+  
+  <p>
+    © 2025 喵落阁
+  </p>
+  
+
+  
+  <p>欢迎来到克喵的博客~</p>
+  
+</div>
+
+  <div
+  x-data="{ icons: [
+    { name: 'sunny', status: 'n' },
+    { name: 'moon', status: 'y' },
+    { name: 'desktop', status: 'auto' }
+  ] }"
+  class="flex items-center gap-2 h-[32px] px-2 bg-base-100 border border-base-content/30 rounded-full"
+>
+  <template x-for="icon in icons">
+    <div
+      role="button"
+      tabindex="0"
+      :aria-label="'Select ' + icon.name + ' mode'"
+      class="group inline-flex justify-center items-center p-1 rounded-full cursor-pointer hover:bg-primary"
+      :class="$store.darkMode.icon() === icon.name && 'bg-primary'"
+      @click="$store.darkMode.toggle(icon.status)"
+    >
+      <ion-icon
+        :name="`${icon.name}-outline`"
+        class="group-hover:text-primary-content"
+        :class="$store.darkMode.icon() === icon.name && 'text-primary-content'"
+      >
+      </ion-icon>
+    </div>
+  </template>
+</div>
+
+</footer>
+
+          </div>
+        </div>
+        <div class="back">
+          <div class="container">
+            
+            <div class="max-w-[65ch] mt-8 mx-auto px-4">
+  
+  
+  
+  <div>
+    <div class="mb-4 text-lg font-medium">Me</div>
+
+    <div class="prose dark:prose-invert">
+      <h3 id="hello">Hello</h3>
+
+<div style="text-align: center; margin: 20px 0;">
+  <a href="https://blog-v3.kemeow.top/">
+    <img 
+      src="https://media.giphy.com/media/SWoSkN6DxTszqIKEqv/giphy.gif" 
+      alt="GIF Link" 
+      height="275" 
+      style="max-width: 100%; height: auto; display: inline-block;"
+    />
+  </a>
+</div>
+
+<ul>
+<li>🔭 I’m currently studying in Nanjing</li>
+<li>🌱 Current learning content: Automation Technology and Applications, front-end (sub), etc</li>
+<li>💬 You can ask me some questions about resources。</li>
+<li>📫 How to contact my email or official account: <a href="mailto:kemiaofx@163.com" target="_blank">kemiaofx@163.com</a>
+</li>
+<li>🍉 Active Community：<a href="https://blog-v3.kemeow.top" target="_blank">BLOG</a>
+ | <a href="https://t.me/KemiaoJun" target="_blank">Telegram</a>
+ |  <a href="https://x.com/kemiaosw/" target="_blank">X</a>
+</li>
+</ul>
+
+<p align="center">
+<img src="https://capsule-render.vercel.app/api?type=waving&color=timeGradient&height=300&&section=header&text=HI%20THERE!&fontSize=90&fontAlign=50&fontAlignY=30&desc=I%20AM%20KeMiao%20%F0%9F%91%8B&descAlign=50&descSize=30&descAlignY=60&animation=twinkling" />
+</p>
+
+<p align="center">
+<img src="https://readme-typing-svg.demolab.com?font=Orbitron&size=25&pause=1000&center=true&vCenter=true&random=false&width=600&lines=Welcome+to+my+About+page!;I+am+KeMiao+obsessed+with+programming!" />
+</p>
+
+<h3 id="-个人简介">👋 个人简介</h3>
+<hr>
+<p><a href="https://kemiao.online" target="_blank">个人主页</a>
+ | <a href="https://blog-v3.kemeow.top" target="_blank">博客站点</a>
+</p>
+<p>大家好！这里是克喵爱吃卤面的博客。致力于分享资源、生活日记和踩坑教程，代码水准一般，自动化专业大二学生，现于南京就读，普通的大学牛马。</p>
+<h3 id="关于我">关于我</h3>
+<hr>
+<ul>
+<li>🖥 <strong>个性:</strong> 开朗活泼，热爱学习，勤奋工作</li>
+<li>🖥 <strong>技能:</strong> 自动化技术与应用</li>
+<li>🖥 <strong>个人信息:</strong>
+<ul>
+<li>🧑 <strong>姓名:</strong> mcy</li>
+<li>🏫 <strong>学校:</strong> 南京工业职业技术大学，<a href="https://www.niit.edu.cn/" target="_blank">官方网站</a>
+</li>
+<li>🏛️ <strong>年级:</strong> 大二</li>
+<li>👷 <strong>职业:</strong> 学生</li>
+</ul>
+</li>
+<li>🖥 <strong>兴趣:</strong> 计算机，单机游戏，电子产品，数码产品，资源分享</li>
+<li>🖥 <strong>梦想:</strong> 咸鱼算不算？</li>
+</ul>
+<hr>
+<h3 id="-我的github数据">📈 我的GitHub数据</h3>
+
+<div align="center">
+  <img src="https://github-readme-stats.vercel.app/api?username=Kemeow815" alt="GitHub Stats" />
+</div>
+
+
+<p align="center">
+  <a>
+    <img src="https://github-readme-activity-graph.vercel.app/graph?username=Kemeow815&theme=github-compact&custom_title=Activity&radius=30&height=300" alt="Activity">
+  </a>
+</p>
+
+
+<div align="center">
+  <img 
+    src="https://github-immortality.vercel.app/api?username=Kemeow815" 
+    alt="修仙系列统计卡片" 
+    style="max-width: 100%; height: auto;" 
+  />
+</div>
+
+<hr>
+<h3 id="赞助">赞助</h3>
+<ul>
+<li>微信公众号：<a href="https://wechat.kemeow.top/" target="_blank">克喵的小站</a>
+</li>
+<li>赞助页面: <a href="https://donate.kemeow.top/" target="_blank">点我</a>
+</li>
+</ul>
+
+    </div>
+  </div>
+  <div class="divider divider-vertical"></div>
+  
+  
+
+  
+  
+  <div class="pb-4">
+  
+    <div class="mb-4 text-lg font-medium">Social Links</div>
+
+    <ul class="menu menu-horizontal flex-wrap w-full px-0 [&_ion-icon]:text-lg">
+  
+  <li>
+    <a href="mailto:me@kemiaosw.top" title="Email">
+      <ion-icon name="mail"></ion-icon>
+    </a>
+  </li>
+  
+
+  
+  <li>
+    <a href="https://github.com/Kemeow815" target="_blank" title="GitHub">
+      <ion-icon name="logo-github"></ion-icon>
+    </a>
+  </li>
+  
+  <li>
+    <a href="https://x.com/kemiaosw" target="_blank" title="X">
+      <ion-icon name="logo-x"></ion-icon>
+    </a>
+  </li>
+  
+  <li>
+    <a href="https://t.me/KemiaoJun" target="_blank" title="Telegram">
+      <ion-icon name="paper-plane-outline"></ion-icon>
+    </a>
+  </li>
+  
+  <li>
+    <a href="https://space.bilibili.com/3546643173477234" target="_blank" title="BiliBili">
+      <ion-icon name="logo-youtube"></ion-icon>
+    </a>
+  </li>
+  
+  <li>
+    <a href="https://music.163.com/#/playlist?id=13681647281" target="_blank" title="网易云音乐">
+      <ion-icon name="musical-notes-outline"></ion-icon>
+    </a>
+  </li>
+  
+</ul>
+
+  </div>
+  
+
+  
+</div>
+
+            
+
+            
+<footer class="flex justify-between items-center gap-2 max-w-[65ch] mx-auto px-4 md:px-0 py-12">
+
+  <div>
+  
+  <p>
+    © 2025 喵落阁
+  </p>
+  
+
+  
+  <p>欢迎来到克喵的博客~</p>
+  
+</div>
+
+  <div
+  x-data="{ icons: [
+    { name: 'sunny', status: 'n' },
+    { name: 'moon', status: 'y' },
+    { name: 'desktop', status: 'auto' }
+  ] }"
+  class="flex items-center gap-2 h-[32px] px-2 bg-base-100 border border-base-content/30 rounded-full"
+>
+  <template x-for="icon in icons">
+    <div
+      role="button"
+      tabindex="0"
+      :aria-label="'Select ' + icon.name + ' mode'"
+      class="group inline-flex justify-center items-center p-1 rounded-full cursor-pointer hover:bg-primary"
+      :class="$store.darkMode.icon() === icon.name && 'bg-primary'"
+      @click="$store.darkMode.toggle(icon.status)"
+    >
+      <ion-icon
+        :name="`${icon.name}-outline`"
+        class="group-hover:text-primary-content"
+        :class="$store.darkMode.icon() === icon.name && 'text-primary-content'"
+      >
+      </ion-icon>
+    </div>
+  </template>
+</div>
+
+</footer>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+  window.lightTheme = "emerald"
+  window.darkTheme = "forest"
+</script>
+
+
+
+
+
+  
+
+<script src="/js/main.min.js"></script>
+
+    
+
+
+  <script
+  src="https://cdn.jsdelivr.net/npm/luxon@1.26.0"
+  integrity="sha256-4sbTzmCCW9LGrIh5OsN8V5Pfdad1F1MwhLAOyXKnsE0="
+  crossorigin="anonymous"
+></script>
+<script>
+  format()
+
+  function format() {
+    document.querySelectorAll('span[data-format="luxon"]').forEach(el => {
+      const date = el.textContent
+
+      el.textContent = luxon.DateTime.fromISO(date, { locale: "en" }).toFormat("2025年06月06日")
+    })
+  }
+</script>
+
+
+
+<script>
+    window.customSyntaxHighlighting = {
+      light: "/css/syntax-light.min.css",
+      dark: "/css/syntax-dark.min.css"
+    }
+
+    document.addEventListener('alpine:initialized', () => {
+      var isDark = Alpine.store('darkMode').isDark()
+      var customSyntaxHighlightingUrl = isDark ? window.customSyntaxHighlighting.dark : window.customSyntaxHighlighting.light
+
+      document
+        .querySelector('link[data-custom-syntax-highlighting]')
+        .setAttribute('href', customSyntaxHighlightingUrl)
+    })
+  </script>
+
+
+
+
+  
+
+<script src="/js/toc.min.js"></script>
+
+
+  
+    <script type="module">
+      import mediumZoom from 'https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/+esm';
+      mediumZoom('#dream-single-post-content img', {
+        background: 'oklch(var(--b1))',
+        margin: 24,
+      })
+    </script>
+  
+
+
+
+
+
+
+    
+
+    
+
+    
+
+    
+
+    <script type="module" src="https://cdn.jsdelivr.net/npm/ionicons@7.4.0/dist/ionicons/ionicons.esm.js" integrity="sha256-/IFmi82bIhdYWctu0UddSlJqpnzWm7Vh2C4CM32wF/k=" crossorigin="anonymous"></script>
+    <script nomodule src="https://cdn.jsdelivr.net/npm/ionicons@7.4.0/dist/ionicons/ionicons.js" integrity="sha256-mr7eJMX3VC3F7G32mk4oWp1C6a2tlMYxUdptfT7uKI8=" crossorigin="anonymous"></script>
+  </body>
+</html>

@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="zh-Hans"
+  x-data
+  :class="$store.darkMode.class()"
+  :data-theme="$store.darkMode.theme()">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search | 喵落阁</title>
+
+    
+  
+    <link href="/img/favicon.ico" rel="icon" type="image/x-icon" />
+  
+
+
+<link rel="canonical" href="https://blog-v4.kemiaosw.top/search/" />
+
+
+
+<meta name="author" content="克喵爱吃卤面" />
+<meta name="description" content="愿你看清一切真相后，依旧热爱你的家人和朋友。" />
+
+
+
+<meta name="generator" content="Hugo 0.147.7">
+
+
+<meta property="og:url" content="https://blog-v4.kemiaosw.top/search/">
+  <meta property="og:site_name" content="喵落阁">
+  <meta property="og:title" content="喵落阁">
+  <meta property="og:description" content="愿你看清一切真相后，依旧热爱你的家人和朋友。">
+  <meta property="og:locale" content="zh_Hans">
+  <meta property="og:type" content="website">
+    <meta property="og:image" content="https://blog-v4.kemiaosw.top/img/background.webp">
+
+
+
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://blog-v4.kemiaosw.top/img/background.webp">
+  <meta name="twitter:title" content="喵落阁">
+  <meta name="twitter:description" content="愿你看清一切真相后，依旧热爱你的家人和朋友。">
+
+
+
+
+  
+
+<link rel="stylesheet" href="/css/output.min.css" />
+
+
+
+
+     
+
+    
+
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3/dist/cdn.min.js" integrity="sha256-PtHu0lJIiSHfZeNj1nFd6wTX+Squ255SGZ/fc8seCtM=" crossorigin="anonymous"></script>
+  </head>
+
+  <body x-data="{
+    flip: false,
+  }">
+    
+    <div id="dream-global-bg"></div>
+
+    
+<nav x-data="{ isSticky: false }"
+  x-init="window.addEventListener('scroll', () => { isSticky = window.scrollY > 30 })"
+  class="sticky top-0 z-30 mt-4 lg:mt-8 py-4"
+  :class="{ 'bg-base-100 shadow-lg dark:border-b dark:border-base-content/30': isSticky }">
+
+  
+  <div class="container flex justify-between max-w-[65ch] mx-auto px-4 md:px-0">
+  
+    <section class="flex items-center gap-4">
+      <div class="avatar cursor-pointer hover:avatar-online" @click="flip = !flip" title="Flip it!">
+        <div class="h-10 rounded-full">
+          <img src="https://cn.cravatar.com/avatar/1F6C8947D35A8186A1647009BA8BC5F2?size=256" alt="喵落阁" />
+        </div>
+      </div>
+
+      
+      <div>
+        
+        <a href="https://blog-v4.kemiaosw.top/" class="text-lg font-semibold cursor-pointer">
+          喵落阁
+        </a>
+        
+        
+        <div class="text-base-content/60 text-sm">愿你看清一切真相后，依旧热爱你的家人和朋友。</div>
+        
+      </div>
+      
+    </section>
+
+    
+    
+      
+    
+
+    <div class="dropdown dropdown-end sm:hidden">
+      <div tabindex="0" role="button" class="btn btn-ghost btn-square" aria-label="Select an option">
+        <ion-icon name="menu" class="text-2xl"></ion-icon>
+      </div>
+      <ul tabindex="0" class="dropdown-content menu w-36 bg-base-100 rounded-box z-1 shadow-md">
+        
+
+
+
+
+
+
+
+<li>
+  <div role="link" tabindex="0" class="inline-flex items-center p-2 cursor-pointer" @click="flip = !flip" title="About">
+    <ion-icon name="information-circle"></ion-icon>About</div>
+</li>
+
+
+
+
+
+
+
+<li>
+  <a class="group inline-flex items-center p-2 cursor-pointer" href="/search" title="Search">
+    <ion-icon name="search"></ion-icon>
+    Search
+  </a>
+</li>
+
+
+
+
+<li>
+  <a class="inline-flex items-center p-2 cursor-pointer" href="/index.xml" title="RSS">
+    <ion-icon name="logo-rss"></ion-icon>
+    RSS
+  </a>
+</li>
+
+
+
+
+<li>
+  <a class="inline-flex items-center p-2 cursor-pointer" href="/posts" title="Archives">
+    <ion-icon name="archive"></ion-icon>
+    Archives
+  </a>
+</li>
+
+
+
+
+<li>
+  <a class="inline-flex items-center p-2 cursor-pointer" href="/categories" title="All Categories">
+    <ion-icon name="grid"></ion-icon>
+    All Categories
+  </a>
+</li>
+
+
+
+
+<li>
+  <a class="inline-flex items-center p-2 cursor-pointer" href="/tags" title="All Tags">
+    <ion-icon name="pricetags"></ion-icon>
+    All Tags
+  </a>
+</li>
+
+
+
+
+
+
+      </ul>
+    </div>
+    <section class="hidden sm:flex sm:items-center sm:gap-2 md:gap-4">
+      
+
+      
+      
+      
+      
+
+
+
+
+<div role="link" tabindex="0" class="text-sm font-semibold cursor-pointer hover:underline" @click="flip = !flip" title="About">About</div>
+
+
+
+
+
+      
+      
+<a class="group inline-flex items-center p-2 rounded-full cursor-pointer hover:bg-primary" href="/search" title="Search">
+  <ion-icon class="group-hover:text-primary-content" name="search"></ion-icon>
+</a>
+
+
+      
+      
+<a class="group inline-flex items-center p-2 rounded-full cursor-pointer hover:bg-primary" href="/index.xml" title="RSS">
+  <ion-icon class="group-hover:text-primary-content" name="logo-rss"></ion-icon>
+</a>
+
+
+      
+
+      <div class="dropdown dropdown-end dropdown-hover">
+        <div tabindex="0" role="button" class="group inline-flex items-center p-2 rounded-full cursor-pointer hover:bg-primary" aria-label="Select an option">
+          <ion-icon class="group-hover:text-primary-content text-xl" name="menu"></ion-icon>
+        </div>
+        <ul tabindex="0" class="dropdown-content menu w-36 bg-base-100 rounded-box z-1 shadow-xl">
+          
+          
+<li>
+  <a class="inline-flex items-center p-2 cursor-pointer" href="/posts" title="Archives">
+    <ion-icon name="archive"></ion-icon>
+    Archives
+  </a>
+</li>
+
+
+          
+          
+<li>
+  <a class="inline-flex items-center p-2 cursor-pointer" href="/categories" title="All Categories">
+    <ion-icon name="grid"></ion-icon>
+    All Categories
+  </a>
+</li>
+
+
+          
+          
+<li>
+  <a class="inline-flex items-center p-2 cursor-pointer" href="/tags" title="All Tags">
+    <ion-icon name="pricetags"></ion-icon>
+    All Tags
+  </a>
+</li>
+
+
+          
+
+          
+        </ul>
+      </div>
+      
+    </section>
+  </div>
+</nav>
+
+
+    <div class="flip-container" :class="{ 'flip-it': flip }">
+      <div class="flipper">
+        <div class="front">
+          <div class="container">
+            
+
+
+<div class="max-w-[65ch] mt-8 lg:mt-12 mx-auto px-4"
+
+x-data="{
+  search: '',
+  get posts() { return this.search !== '' ? window.fuse.search(this.search) : [] },
+}">
+  <label for="search" class="input w-full">
+    <input id="search" name="search" type="text" class="grow" placeholder="Search" x-model.debounce="search" />
+    <ion-icon name="search"></ion-icon>
+  </label>
+
+  <div class="mt-8 space-y-4">
+  <template x-for="post in posts">
+    <a class="card bg-base-100 hover:bg-base-content/10 cursor-pointer border border-base-content/30" :href="post.item.url">
+      <div class="card-body">
+        <h2 class="card-title" x-text="post.item.title"></h2>
+
+        <div x-html="post.item.description"></div>
+
+        <div class="card-actions justify-between items-center mt-4">
+          <div class="flex items-center">
+            <template x-if="post.item.avatar">
+            <div class="avatar mr-1">
+              <div class="w-8 rounded-full">
+                <img class="my-0" :src="post.item.avatar" :alt="post.item.author" />
+              </div>
+            </div>
+            </template>
+            <template x-if="!post.item.avatar">
+            <span>@</span>
+            </template>
+
+            <template x-if="post.item.author">
+            <span x-text="post.item.author"></span>
+            </template>
+            <template x-if="!post.item.author">
+            <span>克喵爱吃卤面</span>
+            </template>
+            </span>
+          </div>
+
+          <div class="inline-flex items-center">
+            <ion-icon name="time" class="mr-1"></ion-icon>
+            <span><span x-text="post.item.readingTime"></span> minute read</span>
+          </div>
+        </div>
+      </div>
+    </a>
+  </template>
+  </div>
+</div>
+
+
+
+            
+<footer class="flex justify-between items-center gap-2 max-w-[65ch] mx-auto px-4 md:px-0 py-12">
+
+  <div>
+  
+  <p>
+    © 2025 喵落阁
+  </p>
+  
+
+  
+  <p>欢迎来到克喵的博客~</p>
+  
+</div>
+
+  <div
+  x-data="{ icons: [
+    { name: 'sunny', status: 'n' },
+    { name: 'moon', status: 'y' },
+    { name: 'desktop', status: 'auto' }
+  ] }"
+  class="flex items-center gap-2 h-[32px] px-2 bg-base-100 border border-base-content/30 rounded-full"
+>
+  <template x-for="icon in icons">
+    <div
+      role="button"
+      tabindex="0"
+      :aria-label="'Select ' + icon.name + ' mode'"
+      class="group inline-flex justify-center items-center p-1 rounded-full cursor-pointer hover:bg-primary"
+      :class="$store.darkMode.icon() === icon.name && 'bg-primary'"
+      @click="$store.darkMode.toggle(icon.status)"
+    >
+      <ion-icon
+        :name="`${icon.name}-outline`"
+        class="group-hover:text-primary-content"
+        :class="$store.darkMode.icon() === icon.name && 'text-primary-content'"
+      >
+      </ion-icon>
+    </div>
+  </template>
+</div>
+
+</footer>
+
+          </div>
+        </div>
+        <div class="back">
+          <div class="container">
+            
+            <div class="max-w-[65ch] mt-8 mx-auto px-4">
+  
+  
+  
+  <div>
+    <div class="mb-4 text-lg font-medium">Me</div>
+
+    <div class="prose dark:prose-invert">
+      <h3 id="hello">Hello</h3>
+
+<div style="text-align: center; margin: 20px 0;">
+  <a href="https://blog-v3.kemeow.top/">
+    <img 
+      src="https://media.giphy.com/media/SWoSkN6DxTszqIKEqv/giphy.gif" 
+      alt="GIF Link" 
+      height="275" 
+      style="max-width: 100%; height: auto; display: inline-block;"
+    />
+  </a>
+</div>
+
+<ul>
+<li>🔭 I’m currently studying in Nanjing</li>
+<li>🌱 Current learning content: Automation Technology and Applications, front-end (sub), etc</li>
+<li>💬 You can ask me some questions about resources。</li>
+<li>📫 How to contact my email or official account: <a href="mailto:kemiaofx@163.com" target="_blank">kemiaofx@163.com</a>
+</li>
+<li>🍉 Active Community：<a href="https://blog-v3.kemeow.top" target="_blank">BLOG</a>
+ | <a href="https://t.me/KemiaoJun" target="_blank">Telegram</a>
+ |  <a href="https://x.com/kemiaosw/" target="_blank">X</a>
+</li>
+</ul>
+
+<p align="center">
+<img src="https://capsule-render.vercel.app/api?type=waving&color=timeGradient&height=300&&section=header&text=HI%20THERE!&fontSize=90&fontAlign=50&fontAlignY=30&desc=I%20AM%20KeMiao%20%F0%9F%91%8B&descAlign=50&descSize=30&descAlignY=60&animation=twinkling" />
+</p>
+
+<p align="center">
+<img src="https://readme-typing-svg.demolab.com?font=Orbitron&size=25&pause=1000&center=true&vCenter=true&random=false&width=600&lines=Welcome+to+my+About+page!;I+am+KeMiao+obsessed+with+programming!" />
+</p>
+
+<h3 id="-个人简介">👋 个人简介</h3>
+<hr>
+<p><a href="https://kemiao.online" target="_blank">个人主页</a>
+ | <a href="https://blog-v3.kemeow.top" target="_blank">博客站点</a>
+</p>
+<p>大家好！这里是克喵爱吃卤面的博客。致力于分享资源、生活日记和踩坑教程，代码水准一般，自动化专业大二学生，现于南京就读，普通的大学牛马。</p>
+<h3 id="关于我">关于我</h3>
+<hr>
+<ul>
+<li>🖥 <strong>个性:</strong> 开朗活泼，热爱学习，勤奋工作</li>
+<li>🖥 <strong>技能:</strong> 自动化技术与应用</li>
+<li>🖥 <strong>个人信息:</strong>
+<ul>
+<li>🧑 <strong>姓名:</strong> mcy</li>
+<li>🏫 <strong>学校:</strong> 南京工业职业技术大学，<a href="https://www.niit.edu.cn/" target="_blank">官方网站</a>
+</li>
+<li>🏛️ <strong>年级:</strong> 大二</li>
+<li>👷 <strong>职业:</strong> 学生</li>
+</ul>
+</li>
+<li>🖥 <strong>兴趣:</strong> 计算机，单机游戏，电子产品，数码产品，资源分享</li>
+<li>🖥 <strong>梦想:</strong> 咸鱼算不算？</li>
+</ul>
+<hr>
+<h3 id="-我的github数据">📈 我的GitHub数据</h3>
+
+<div align="center">
+  <img src="https://github-readme-stats.vercel.app/api?username=Kemeow815" alt="GitHub Stats" />
+</div>
+
+
+<p align="center">
+  <a>
+    <img src="https://github-readme-activity-graph.vercel.app/graph?username=Kemeow815&theme=github-compact&custom_title=Activity&radius=30&height=300" alt="Activity">
+  </a>
+</p>
+
+
+<div align="center">
+  <img 
+    src="https://github-immortality.vercel.app/api?username=Kemeow815" 
+    alt="修仙系列统计卡片" 
+    style="max-width: 100%; height: auto;" 
+  />
+</div>
+
+<hr>
+<h3 id="赞助">赞助</h3>
+<ul>
+<li>微信公众号：<a href="https://wechat.kemeow.top/" target="_blank">克喵的小站</a>
+</li>
+<li>赞助页面: <a href="https://donate.kemeow.top/" target="_blank">点我</a>
+</li>
+</ul>
+
+    </div>
+  </div>
+  <div class="divider divider-vertical"></div>
+  
+  
+
+  
+  
+  <div class="pb-4">
+  
+    <div class="mb-4 text-lg font-medium">Social Links</div>
+
+    <ul class="menu menu-horizontal flex-wrap w-full px-0 [&_ion-icon]:text-lg">
+  
+  <li>
+    <a href="mailto:me@kemiaosw.top" title="Email">
+      <ion-icon name="mail"></ion-icon>
+    </a>
+  </li>
+  
+
+  
+  <li>
+    <a href="https://github.com/Kemeow815" target="_blank" title="GitHub">
+      <ion-icon name="logo-github"></ion-icon>
+    </a>
+  </li>
+  
+  <li>
+    <a href="https://x.com/kemiaosw" target="_blank" title="X">
+      <ion-icon name="logo-x"></ion-icon>
+    </a>
+  </li>
+  
+  <li>
+    <a href="https://t.me/KemiaoJun" target="_blank" title="Telegram">
+      <ion-icon name="paper-plane-outline"></ion-icon>
+    </a>
+  </li>
+  
+  <li>
+    <a href="https://space.bilibili.com/3546643173477234" target="_blank" title="BiliBili">
+      <ion-icon name="logo-youtube"></ion-icon>
+    </a>
+  </li>
+  
+  <li>
+    <a href="https://music.163.com/#/playlist?id=13681647281" target="_blank" title="网易云音乐">
+      <ion-icon name="musical-notes-outline"></ion-icon>
+    </a>
+  </li>
+  
+</ul>
+
+  </div>
+  
+
+  
+</div>
+
+            
+
+            
+<footer class="flex justify-between items-center gap-2 max-w-[65ch] mx-auto px-4 md:px-0 py-12">
+
+  <div>
+  
+  <p>
+    © 2025 喵落阁
+  </p>
+  
+
+  
+  <p>欢迎来到克喵的博客~</p>
+  
+</div>
+
+  <div
+  x-data="{ icons: [
+    { name: 'sunny', status: 'n' },
+    { name: 'moon', status: 'y' },
+    { name: 'desktop', status: 'auto' }
+  ] }"
+  class="flex items-center gap-2 h-[32px] px-2 bg-base-100 border border-base-content/30 rounded-full"
+>
+  <template x-for="icon in icons">
+    <div
+      role="button"
+      tabindex="0"
+      :aria-label="'Select ' + icon.name + ' mode'"
+      class="group inline-flex justify-center items-center p-1 rounded-full cursor-pointer hover:bg-primary"
+      :class="$store.darkMode.icon() === icon.name && 'bg-primary'"
+      @click="$store.darkMode.toggle(icon.status)"
+    >
+      <ion-icon
+        :name="`${icon.name}-outline`"
+        class="group-hover:text-primary-content"
+        :class="$store.darkMode.icon() === icon.name && 'text-primary-content'"
+      >
+      </ion-icon>
+    </div>
+  </template>
+</div>
+
+</footer>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+  window.lightTheme = "emerald"
+  window.darkTheme = "forest"
+</script>
+
+
+
+
+
+  
+
+<script src="/js/main.min.js"></script>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.min.js" integrity="sha256-42IbU8t3tOwwbexB7ZVRHm3YDRf65aBPPjRtIUufj5I=" crossorigin="anonymous"></script>
+<script>
+  var fuseData = [{"author":"克喵爱吃卤面","avatar":"/img/kemiao.jpg","categories":["资源分享"],"description":"\u003ch2 id=\"涂鹿toolooz曲线文字绘制设计工具轻松创建沿任意路径排布的精美文字\"\u003e涂鹿Toolooz：曲线文字绘制设计工具，轻松创建沿任意路径排布的精美文字\u003c/h2\u003e\n\u003cp\u003e　　涂鹿Toolooz，在线曲线文字绘制工具，可使文字沿任意路径排列，打造独特视觉效果。为您的徽标、标题、艺术作品赋予生命力与创意。\u003c/p\u003e\n\u003cp\u003e　　支持自定义画布尺寸、文本内容、字体、间距、颜色、描边等，还支持多个绘图工具和选择文本是否重复，可导出为 PNG、WebP 和 SVG 格式，免费使用，无需注册。\u003c/p\u003e\n\u003ch2 id=\"网站介绍\"\u003e网站介绍\u003c/h2\u003e\n\u003ch3 id=\"截图\"\u003e截图\u003c/h3\u003e\n\u003cp\u003e\u003cimg src=\"https://cdn.jsdelivr.net/gh/kmfx/tuchuang@main/img/202505191632987.png\" alt=\"\"\u003e\u003c/p\u003e\n\u003ch3 id=\"特色\"\u003e特色\u003c/h3\u003e\n\u003ch4 id=\"自由绘制路径\"\u003e自由绘制路径\u003c/h4\u003e\n\u003cp\u003e　　使用鼠标或触控笔自由绘制路径，或选择预设形状如圆形、方形、椭圆等，轻松创建文字轨迹。\u003c/p\u003e\n\u003ch4 id=\"文本样式丰富\"\u003e文本样式丰富\u003c/h4\u003e\n\u003cp\u003e　　自定义字体、大小、颜色、间距等属性，支持文本背景带，打造丰富多样的文字效果。\u003c/p\u003e\n\u003ch4 id=\"交互式编辑\"\u003e交互式编辑\u003c/h4\u003e\n\u003cp\u003e　　直观的选择、移动、缩放和旋转功能，让您精确控制每个文字路径的位置和外观。\u003c/p\u003e\n\u003ch4 id=\"灵活配置\"\u003e灵活配置\u003c/h4\u003e\n\u003cp\u003e　　自定义画布尺寸、背景色、缩放级别等，适应各种设计场景和需求。\u003c/p\u003e\n\u003ch4 id=\"多格式导出\"\u003e多格式导出\u003c/h4\u003e\n\u003cp\u003e　　将设计导出为PNG、SVG或WEBP格式，可自定义分辨率和尺寸，轻松应用于各种场景。\u003c/p\u003e\n\u003ch4 id=\"模板库\"\u003e模板库\u003c/h4\u003e\n\u003cp\u003e　　内置多种精美模板，一键应用，快速开始您的创意设计项目\u003c/p\u003e\n\u003ch2 id=\"应用场景\"\u003e应用场景\u003c/h2\u003e\n\u003cp\u003e　　涂鹿曲线文字绘制设计工具适用于多种创意设计\u003c/p\u003e\n\u003cp\u003e　　创建独特的环形或自定义形状品牌徽标，增强品牌视觉识别度。#社交媒体 #创意设计\u003c/p\u003e\n\u003cp\u003e　　为社交媒体平台设计吸引眼球的曲线文字图片，提高内容吸引力。创意海报设计\u003c/p\u003e\n\u003cp\u003e　　创建个性化海报和宣传材料，为活动和产品增添创意元素。\u003c/p\u003e\n\u003ch2 id=\"网站链接\"\u003e网站链接\u003c/h2\u003e\n\u003cp\u003e　　\u003ca href=\"https://toolooz.com/\" target=\"_blank\"\u003ehttps://toolooz.com\u003c/a\u003e\r\n\u003c/p\u003e\n\u003chr\u003e\n\u003ch2 id=\"原文链接\"\u003e原文链接\u003c/h2\u003e\n\u003cp\u003e　　\u003ca href=\"https://www.appmiao.com/836/\" target=\"_blank\"\u003ehttps://www.appmiao.com/836/\u003c/a\u003e\r\n\u003c/p\u003e","readingTime":1,"tags":["Toolooz","网站","设计"],"title":"资源分享：涂鹿Toolooz","url":"/posts/zyfx-toolooz/"},{"author":"克喵爱吃卤面","avatar":"/img/kemiao.jpg","categories":["技术分享"],"description":"\u003ch2 id=\"来将-telegram-当音乐播放器吧寻找音乐即时歌词无损音乐不失真压缩\"\u003e来将 Telegram 当音乐播放器吧！（寻找音乐、即时歌词、无损音乐不失真压缩）\u003c/h2\u003e\n\u003ch3 id=\"步骤一到-music_-下载歌曲并找到歌词\"\u003e步骤一：到 \u003ca href=\"https://t.me/music_v1bot\" target=\"_blank\"\u003e@music_v1bot\u003c/a\u003e\r\n 下载歌曲，并找到歌词\u003c/h3\u003e\n\u003cp\u003e　　\u003cem\u003e输入指令： /search （你想要的歌名）\u003c/em\u003e\u003c/p\u003e\n\u003cp\u003e\u003cimg src=\"https://cdn.jsdelivr.net/gh/kmfx/tuchuang@main/img/202505151340118.jpg\" alt=\"\"\u003e\u003c/p\u003e\n\u003ch3 id=\"步骤二下载-mt-管理器点我\"\u003e步骤二：\u003ca href=\"https://telegra.ph/Mtmanager-02-10-2\" target=\"_blank\"\u003e下载 MT 管理器（点我）\u003c/a\u003e\r\n\u003c/h3\u003e\n\r\n\r\n\r\n  \u003cblockquote\u003e\r\n    \u003cp\u003e\u003cem\u003e\u003cstrong\u003e\u003c!-- raw HTML omitted --\u003e开启：下载好的歌词文件\u003c!-- raw HTML omitted --\u003e\u003c/strong\u003e\u003c/em\u003e\u003c/p\u003e\r\n  \u003c/blockquote\u003e\r\n\r\n\u003cp\u003e\u003cimg src=\"https://cdn.jsdelivr.net/gh/kmfx/tuchuang@main/img/202505151343982.jpg\" alt=\"\"\u003e\u003c/p\u003e\n\u003ch3 id=\"步骤三最右上角搜索勾选正则化替换全部替换\"\u003e步骤三：最右上角、搜索\u0026gt;勾选正则化，替换（全部替换）\u003c/h3\u003e\n\r\n\r\n\r\n  \u003cblockquote\u003e\r\n    \u003cp\u003e\u003cem\u003e输入：[(\\d{2}:\\d{2}).\\d+]\u003c/em\u003e\u003c/p\u003e\n\u003cp\u003e\u003cem\u003e替换：$1\u003c/em\u003e\u003c/p\u003e\r\n  \u003c/blockquote\u003e\r\n\r\n\u003cp\u003e\u003ccode\u003e注意：\u0026quot;$1\u0026quot;后面要加一个空格(英文)。\u003c/code\u003e\u003c/p\u003e\n\u003cp\u003e\u003cimg src=\"https://cdn.jsdelivr.net/gh/kmfx/tuchuang@main/img/202505151346330.jpg\" alt=\"\"\u003e\u003c/p\u003e\n\r\n\r\n\r\n  \u003cblockquote\u003e\r\n    \u003cp\u003e代码作者：Aric\u003c/p\u003e\r\n  \u003c/blockquote\u003e\r\n\r\n\u003cp\u003e　　并将选取好的歌词，粘贴到音乐文件就完成了。\u003c/p\u003e\n\u003ch3 id=\"我是范例-点我查看\"\u003e\u003ca href=\"https://t.me/TESTLIVEUP\" target=\"_blank\"\u003e（我是范例-点我查看）\u003c/a\u003e\r\n\u003c/h3\u003e\n\r\n\u003cdiv style=\"text-align:center; font-weight:bold; text-decoration:underline;\"\u003e须知\u003c/div\u003e\r\n\n\r\n\r\n\r\n  \u003cblockquote\u003e\r\n    \u003cp\u003e使用：“.FLAC“格式的音乐文件，有时候不能正常显示歌词时间轴，是正常的，所以你可能要转换特定的格式，如.mp3，或是.ogg 或.m4a 的歌曲。\u003c/p\u003e\r\n  \u003c/blockquote\u003e\r\n\r\n\u003cp\u003e　　→ 如果你对音乐品质有极致追求，也有电脑 🖥️，我个人极度推荐使用 dBpowerAMP 这类型工具，将无损音乐格式转换成 m4a （水果的算法：QAAC 编码的音乐），目前可以\u003ca href=\"https://telegra.ph/QAAC-%E5%8E%8B%E7%BC%A9%E9%9F%B3%E4%B9%90%E6%8A%80%E6%9C%AF%E8%AF%A6%E8%A7%A3-08-22\" target=\"_blank\"\u003e算是当今世界上最好的压缩算法，在通讯界享有盛名\u003c/a\u003e\r\n，且压缩后可以到接近百分之百还原。（甚至连对音乐/声学研究的职业工作者都讚叹不已）笔者强烈推荐，只叹手机没有类似的软件。专门转成 QAAC 编码的。\u003c/p\u003e\n\u003ch3 id=\"-电脑版-dbpoweramp-下载教学请点我\"\u003e\u003ca href=\"https://t.me/haoruanfenxianggroup/369211\" target=\"_blank\"\u003e🖥️ 电脑版 dBpowerAMP 下载/教学请点我\u003c/a\u003e\r\n\u003c/h3\u003e\n\u003ch2 id=\"hahahugoshortcode3s1hbhb\"\u003e\r\n![](https://cdn.jsdelivr.net/gh/kmfx/tuchuang@main/img/202505151358822.jpg)​\r\n\u003c/h2\u003e\n\u003ch3 id=\"拓展\"\u003e拓展\u003c/h3\u003e\n\u003cp\u003e　　以上是原文内容，如果你改了音乐格式失去了原本的封面，歌手等等东西，一般来说是不妨碍什么的，如果你一定要改的话，可以使用\u003ca href=\"https://t.me/kemiaosw_me/394\" target=\"_blank\"\u003e音乐标签\u003c/a\u003e\r\n。具体使用很简单，我不多赘述，给个视频你就大致明白了：​\u003c/p\u003e\n\u003c!-- raw HTML omitted --\u003e\n\u003cp\u003e　　同时，如果你想更换音乐格式，有很多种方法，以下给一个\u003ca href=\"https://convertio.co/zh/flac-m4a/\" target=\"_blank\"\u003e网站\u003c/a\u003e\r\n。\u003c/p\u003e\n\u003chr\u003e\n\u003ch3 id=\"原文链接\"\u003e原文链接\u003c/h3\u003e\n\u003cp\u003e　　\u003ca href=\"https://telegra.ph/Telegram-Real-Time-sync-lyrics-05-14\" target=\"_blank\"\u003ehttps://telegra.ph/Telegram-Real-Time-sync-lyrics-05-14\u003c/a\u003e\r\n\u003c/p\u003e\n\u003cp\u003e　　\u003c/p\u003e","readingTime":1,"tags":["Telegram","Music","音乐播放器"],"title":"来将 Telegram 当音乐播放器吧！","url":"/posts/telegram-music/"},{"author":"克喵爱吃卤面","avatar":"/img/kemiao.jpg","categories":["资源分享"],"description":"\u003ch3 id=\"网站简介\"\u003e网站简介\u003c/h3\u003e\n\u003cp\u003eDROP 是一个便捷的文件分享与托管平台，云存储工具，提供免费10GB的存储空间，支持大文件的快速上传与分享。\u003c/p\u003e\n\u003cp\u003e支持上传图片、视频、压缩文件和PDF，选择适合文件的文档后，点击拷贝链接即可直接获得分享链接。采用AI驱动技术，确保文件传输的高效性和安全性，同时提供简洁直观的用户界面，方便用户管理和分享文件。DROP 适用于个人用户和创作者，可轻松展示和分发作品\u003c/p\u003e\n\u003chr\u003e\n\u003ch3 id=\"截图\"\u003e截图\u003c/h3\u003e\n\u003cp\u003e\u003cimg src=\"https://cdn.jsdelivr.net/gh/kmfx/tuchuang@main/img/202505092144042.png\" alt=\"\"\u003e\u003c/p\u003e\n\u003chr\u003e\n\u003ch3 id=\"功能特色\"\u003e功能特色\u003c/h3\u003e\n\u003cul\u003e\n\u003cli\u003e\n\u003cp\u003e\u003cstrong\u003e免费10GB存储\u003c/strong\u003e：新用户可免费享受10GB的存储空间，满足日常文件分享需求。\u003c/p\u003e\n\u003c/li\u003e\n\u003cli\u003e\n\u003cp\u003e\u003cstrong\u003e大文件支持\u003c/strong\u003e：支持大文件的快速上传与分享，适合分享高清视频、大型文档等。\u003c/p\u003e\n\u003c/li\u003e\n\u003cli\u003e\n\u003cp\u003e\u003cstrong\u003eAI驱动\u003c/strong\u003e：采用AI技术优化文件传输和管理，提升用户体验。\u003c/p\u003e\n\u003c/li\u003e\n\u003cli\u003e\n\u003cp\u003e\u003cstrong\u003e隐私保护\u003c/strong\u003e：提供文件访问控制，保护用户隐私和数据安全。\u003c/p\u003e\n\u003c/li\u003e\n\u003cli\u003e\n\u003cp\u003e\u003cstrong\u003e简洁界面\u003c/strong\u003e：直观的用户界面，易于上手，方便文件管理。\u003c/p\u003e\n\u003c/li\u003e\n\u003cli\u003e\n\u003cp\u003e\u003cstrong\u003e多平台支持\u003c/strong\u003e：支持多种设备和操作系统，方便随时随地访问文件。\u003c/p\u003e\n\u003c/li\u003e\n\u003c/ul\u003e\n\u003chr\u003e\n\u003ch3 id=\"网站地址\"\u003e网站地址\u003c/h3\u003e\n\u003cp\u003e\u003ca href=\"https://drop.space/\" target=\"_blank\"\u003ehttps://drop.space/\u003c/a\u003e\r\n\u003c/p\u003e\n\u003chr\u003e\n\u003cp\u003e\u003cstrong\u003e原文链接\u003c/strong\u003e: \u003ca href=\"https://www.appmiu.com/31115.html\" target=\"_blank\"\u003ehttps://www.appmiu.com/31115.html\u003c/a\u003e\r\n\u003c/p\u003e","readingTime":1,"tags":["DROP","托管平台"],"title":"DROP：便捷大文件分享与托管网站，免费享10GB空间免费部署","url":"/posts/zyfx-drop/"},{"author":"克喵爱吃卤面","avatar":"/img/kemiao.jpg","categories":["技术分享"],"description":"\u003ch2 id=\"部署-api\"\u003e部署 API\u003c/h2\u003e\n\u003cp\u003e访问 \u003ca href=\"https://gist.github.com/FloatSheep/55db67d9e8148149ebbcb0f9f6b0d901\" target=\"_blank\"\u003eGist\u003c/a\u003e\r\n 并获取其中所有代码\u003c/p\u003e\n\r\n\r\n\r\n  \u003cblockquote\u003e\r\n    \u003cp\u003e需要注意，本 API Worker 脚本基于 ChenYFan 修改，包含了本项目需要使用的功能，请勿随意更改脚本内容\nTGTalker-Frontend V2 的 API 不兼容 V1\u003c/p\u003e\r\n  \u003c/blockquote\u003e\r\n\r\n\u003cp\u003e进入 \u003ca href=\"https://dash.cloudflare.com\" target=\"_blank\"\u003eCloudflare 仪表盘\u003c/a\u003e\r\n\u003c/p\u003e\n\u003cp\u003e选择创建应用程序 -\u0026gt; 创建 Worker -\u0026gt; 修改名称（部署）-\u0026gt; 编辑代码\u003c/p\u003e\n\u003cp\u003e在其中粘贴你复制的所有代码，并且修改 ChannelName 为你的频道名称，部署并访问 Worker 查看是否能正确返回内容\u003c/p\u003e\n\u003cp\u003e接着你可以为你的 Worker 绑定一个域名\u003c/p\u003e\n\u003cp\u003e\u003cimg src=\"https://cdn.jsdelivr.net/gh/kmfx/tuchuang@main/img/202505042340004.png\" alt=\"\"\u003e\n\u003cimg src=\"https://cdn.jsdelivr.net/gh/kmfx/tuchuang@main/img/202505042340138.png\" alt=\"\"\u003e\n\u003cimg src=\"https://cdn.jsdelivr.net/gh/kmfx/tuchuang@main/img/202505042340963.png\" alt=\"\"\u003e\u003c/p\u003e\n\u003cp\u003e保存，然后将你绑定的域名填入配置中的 api 项即可\u003c/p\u003e","readingTime":1,"tags":["tgtalk","说说"],"title":"tgtalk免费部署","url":"/posts/tgtalk-deploy/"},{"author":"克喵爱吃卤面","avatar":"/img/kemiao.jpg","categories":["技术分享"],"description":"\u003cblockquote\u003e\r\n    \u003cp\u003e使用Waline评论我喜欢使用的部署方法(个人认为最简便)\u003c/p\u003e\r\n  \u003c/blockquote\u003e\r\n\r\n\u003ch2 id=\"所需账号\"\u003e所需账号\u003c/h2\u003e\n\u003col\u003e\n\u003cli\u003e一个Github账号\u003c/li\u003e\n\u003cli\u003e一个Vercel账号\u003c/li\u003e\n\u003cli\u003e一个leancloud账号(最好是国际服的，你有了Github难道还用大陆的吗？大陆的要备案，故在这里不阐述，末尾放原文链接)\u003c/li\u003e\n\u003c/ol\u003e\n\u003chr\u003e\n\u003ch2 id=\"在-leancloud-里创建数据库\"\u003e在 leancloud 里创建数据库\u003c/h2\u003e\n\u003col\u003e\n\u003cli\u003e\n\u003cp\u003e\u003ca href=\"https://console.leancloud.app/login\" target=\"_blank\"\u003e登录\u003c/a\u003e\r\n 或 \u003ca href=\"https://console.leancloud.app/register\" target=\"_blank\"\u003e注册\u003c/a\u003e\r\n \u003ccode\u003eLeanCloud 国际版\u003c/code\u003e 并进入 \u003ca href=\"https://console.leancloud.app/apps\" target=\"_blank\"\u003e控制台\u003c/a\u003e\r\n\u003c/p\u003e\n\u003c/li\u003e\n\u003cli\u003e\n\u003cp\u003e点击左上角 \u003ca href=\"https://console.leancloud.app/apps\" target=\"_blank\"\u003e创建应用\u003c/a\u003e\r\n 并起一个你喜欢的名字 (请选择免费的开发版):\u003c/p\u003e\n\u003cp\u003e\u003cimg src=\"https://s2.loli.net/2025/04/14/7FOYbvS8MlQXe52.png\" alt=\"创建应用\"\u003e\u003c/p\u003e\n\u003c/li\u003e\n\u003cli\u003e\n\u003cp\u003e进入应用，选择左下角的 \u003ccode\u003e设置\u003c/code\u003e \u0026gt; \u003ccode\u003e应用 Key\u003c/code\u003e。你可以看到你的 \u003ccode\u003eAPP ID\u003c/code\u003e,\u003ccode\u003eAPP Key\u003c/code\u003e 和 \u003ccode\u003eMaster Key\u003c/code\u003e。请记录它们，以便后续使用。\u003c/p\u003e\n\u003cp\u003e\u003cimg src=\"https://s2.loli.net/2025/04/14/c1Vltvsm8GYXSbf.png\" alt=\"ID 和 Key\"\u003e\u003c/p\u003e\n\u003c/li\u003e\n\u003c/ol\u003e\n\u003chr\u003e\n\u003ch2 id=\"在-vercel-部署\"\u003e在 Vercel 部署\u003c/h2\u003e\n\u003cp\u003e\u003ca href=\"https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fwalinejs%2Fwaline%2Ftree%2Fmain%2Fexample\" target=\"_blank\"\u003e\u003cimg src=\"https://cdn.jsdelivr.net/gh/kmfx/tuchuang@main/img/vercel.svg\" alt=\"Vercel\"\u003e\u003c/a\u003e\r\n\u003c/p\u003e\n\u003col\u003e\n\u003cli\u003e\n\u003cp\u003e点击上方按钮，跳转至 Vercel 进行 Server 端部署。\u003c/p\u003e\n\u003cp\u003e如果你未登录的话，Vercel 会让你注册或登录，请使用 GitHub 账户进行快捷登录。\u003c/p\u003e\n\u003c/li\u003e\n\u003cli\u003e\n\u003cp\u003e输入一个你喜欢的 Vercel 项目名称并点击 \u003ccode\u003eCreate\u003c/code\u003e 继续:\u003c/p\u003e\n\u003cp\u003e\u003cimg src=\"https://s2.loli.net/2025/04/14/XauJLO7hfcWVx2Y.png\" alt=\"创建项目\"\u003e\u003c/p\u003e\n\u003c/li\u003e\n\u003cli\u003e\n\u003cp\u003e此时 Vercel 会基于 Waline 模板帮助你新建并初始化仓库，仓库名为你之前输入的项目名。\u003c/p\u003e\n\u003cp\u003e\u003cimg src=\"https://s2.loli.net/2025/04/14/Q7tExaML3XKlf12.png\" alt=\"deploy\"\u003e\u003c/p\u003e\n\u003cp\u003e一两分钟后，满屏的烟花会庆祝你部署成功。此时点击 \u003ccode\u003eGo to Dashboard\u003c/code\u003e 可以跳转到应用的控制台。\u003c/p\u003e\n\u003cp\u003e\u003cimg src=\"https://s2.loli.net/2025/04/14/HqfvwV6GdrFROSZ.png\" alt=\"deploy\"\u003e\u003c/p\u003e\n\u003c/li\u003e\n\u003cli\u003e\n\u003cp\u003e点击顶部的 \u003ccode\u003eSettings\u003c/code\u003e - \u003ccode\u003eEnvironment Variables\u003c/code\u003e 进入环境变量配置页，并配置三个环境变量 \u003ccode\u003eLEAN_ID\u003c/code\u003e, \u003ccode\u003eLEAN_KEY\u003c/code\u003e 和 \u003ccode\u003eLEAN_MASTER_KEY\u003c/code\u003e 。它们的值分别对应上一步在 LeanCloud 中获得的 \u003ccode\u003eAPP ID\u003c/code\u003e, \u003ccode\u003eAPP KEY\u003c/code\u003e, \u003ccode\u003eMaster Key\u003c/code\u003e。\u003c/p\u003e","readingTime":1,"tags":["Waline部署","评论系统","Vercel"],"title":"Waline评论在Vercel部署","url":"/posts/waline-deploy/"},{"author":"克喵爱吃卤面","avatar":"/img/kemiao.jpg","categories":["技术分享"],"description":"\u003ch2 id=\"第一部分vercelumami\"\u003e第一部分：Vercel+Umami\u003c/h2\u003e\n\u003col\u003e\n\u003cli\u003e\n\u003cp\u003e第一步\u003cbr\u003e\n1.1 \u003c!-- raw HTML omitted --\u003eFork\u003c!-- raw HTML omitted --\u003e​\u003ca href=\"https://github.com/umami-software/umami\" target=\"_blank\"\u003eumami\u003c/a\u003e\r\n到自己的Github仓库\u003c/p\u003e\n\u003cp\u003e\u003cimg src=\"https://s2.loli.net/2025/04/06/c4xDVNrsBpTM8YZ.webp\" alt=\"\"\u003e\u003c/p\u003e\n\u003cp\u003e1.2 创建项目\n\u003cimg src=\"https://s2.loli.net/2025/04/06/GX9OdivuxF5pJzH.webp\" alt=\"\"\u003e\u003c/p\u003e\n\u003c/li\u003e\n\u003cli\u003e\n\u003cp\u003e第二步\u003c/p\u003e\n\u003c/li\u003e\n\u003c/ol\u003e\n\u003cp\u003e　2.1 创建\u003ca href=\"https://vercel.com/login\" target=\"_blank\"\u003eVercel\u003c/a\u003e\r\n账号，这里我就省略了，因为GitHub可以直接进行授权即可。\u003c/p\u003e\n\u003cp\u003e2.2 在你授权以后，首先创建\u003c!-- raw HTML omitted --\u003ePostgres\u003c!-- raw HTML omitted --\u003e数据库，直接一路下一步，创建好就行，可以给下面的连接复制出来\u003c/p\u003e\n\u003cp\u003e\u003cimg src=\"https://s2.loli.net/2025/04/06/K69FpfmjZxcu3Ad.webp\" alt=\"\"\u003e\u003c/p\u003e\n\u003cp\u003e\u003cimg src=\"https://s2.loli.net/2025/04/06/7OieEKGht4kgSux.webp\" alt=\"\"\u003e\u003c/p\u003e\n\u003cp\u003e　　点击\u003c!-- raw HTML omitted --\u003eCopy Snippet\u003c!-- raw HTML omitted --\u003e​,就可以，记住在粘贴的时候是我画线里面的部分，双引号都不需要 ，因为要设置环境变量。\u003c/p\u003e\n\u003cp\u003e　　\t2.3 在创建好数据库以后，回到主页面的\u003c!-- raw HTML omitted --\u003eOverview\u003c!-- raw HTML omitted --\u003e​，然后右上角有一个\u003c!-- raw HTML omitted --\u003eAdd New\u003c!-- raw HTML omitted --\u003e​选择添加\u003c!-- raw HTML omitted --\u003eProject\u003c!-- raw HTML omitted --\u003e​，选择你\u003c!-- raw HTML omitted --\u003eFork\u003c!-- raw HTML omitted --\u003e​的\u003c!-- raw HTML omitted --\u003eumami\u003c!-- raw HTML omitted --\u003e​，添加即可。\n2.4 设置环境变量，\u003ccode\u003eDATABASE_URL\u003c/code\u003e​和\u003ccode\u003eHASH_SALT\u003c/code\u003e​和\u003ccode\u003eTRACKER_SCRIPT_NAME\u003c/code\u003e​，其中\u003ccode\u003eDATABASE_URL\u003c/code\u003e​的值就是上面划线的部分，其他的两个环境变量都是对应的值是String自己可以随意定义。\n　　\t2.5 设置好以后点击\u003c!-- raw HTML omitted --\u003eDeploy\u003c!-- raw HTML omitted --\u003e​，等待大约两分钟左右，自动部署完成，部署完成以后可以通过下图种面板上面给的链接可以直接访问。\u003c/p\u003e","readingTime":2,"tags":["Umami部署","网站统计","Vercel","Cloudflare Workers"],"title":"Umami博客访问统计Vercel+Cloudflare Workers部署","url":"/posts/umami-deploy/"},{"author":"克喵爱吃卤面","avatar":"/img/kemiao.jpg","categories":["技术分享"],"description":"\u003ch2 id=\"git-同步上游仓库的更新\"\u003eGit 同步上游仓库的更新\u003c/h2\u003e\n\u003cp\u003e　　使用一个 Github Template 创建了我自己的仓库，需要同步一下补丁更新，总不能自己手抄一遍吧，搜了一下解决方案。\u003c/p\u003e\n\u003cp\u003e　　记录一下。\u003c/p\u003e\n\u003ch3 id=\"添加上游仓库\"\u003e添加上游仓库\u003c/h3\u003e\n\u003cp\u003e　　给上游仓库取个名字，如果将命名为 \u003ccode\u003eupstream\u003c/code\u003e​ ，可以在本地仓库中运行以下命令：\u003c/p\u003e\n\u003cdiv class=\"highlight\"\u003e\u003cpre tabindex=\"0\" style=\"color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;\"\u003e\u003ccode class=\"language-sh\" data-lang=\"sh\"\u003e\u003cspan style=\"display:flex;\"\u003e\u003cspan\u003egit remote add upstream https://github.com/$\u0026lt;upstream-repo\u0026gt;.git\n\u003c/span\u003e\u003c/span\u003e\u003c/code\u003e\u003c/pre\u003e\u003c/div\u003e\u003ch3 id=\"获取上游仓库的更改\"\u003e获取上游仓库的更改\u003c/h3\u003e\n\u003cp\u003e　　运行以下命令以获取上游仓库中的所有分支和提交：\u003c/p\u003e\n\u003cdiv class=\"highlight\"\u003e\u003cpre tabindex=\"0\" style=\"color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;\"\u003e\u003ccode class=\"language-sh\" data-lang=\"sh\"\u003e\u003cspan style=\"display:flex;\"\u003e\u003cspan\u003egit fetch upstream\n\u003c/span\u003e\u003c/span\u003e\u003c/code\u003e\u003c/pre\u003e\u003c/div\u003e\u003ch3 id=\"合并上游更改\"\u003e合并上游更改\u003c/h3\u003e\n\u003cp\u003e　　现在，将上游 main 分支的更改合并到您的本地 main 分支：\u003c/p\u003e\n\u003cdiv class=\"highlight\"\u003e\u003cpre tabindex=\"0\" style=\"color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;\"\u003e\u003ccode class=\"language-sh\" data-lang=\"sh\"\u003e\u003cspan style=\"display:flex;\"\u003e\u003cspan\u003egit merge upstream/main --allow-unrelated-histories\n\u003c/span\u003e\u003c/span\u003e\u003c/code\u003e\u003c/pre\u003e\u003c/div\u003e\u003cp\u003e　　如果只需要合并特定的 commit ：\u003c/p\u003e\n\u003cdiv class=\"highlight\"\u003e\u003cpre tabindex=\"0\" style=\"color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;\"\u003e\u003ccode class=\"language-sh\" data-lang=\"sh\"\u003e\u003cspan style=\"display:flex;\"\u003e\u003cspan\u003egit cherry-pick \u0026lt;commit-hash\u0026gt;\n\u003c/span\u003e\u003c/span\u003e\u003c/code\u003e\u003c/pre\u003e\u003c/div\u003e\u003cp\u003e　　也可以使用\u003c/p\u003e\n\u003cdiv class=\"highlight\"\u003e\u003cpre tabindex=\"0\" style=\"color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;\"\u003e\u003ccode class=\"language-sh\" data-lang=\"sh\"\u003e\u003cspan style=\"display:flex;\"\u003e\u003cspan\u003egcp \u0026lt;commit-hash\u0026gt;\n\u003c/span\u003e\u003c/span\u003e\u003c/code\u003e\u003c/pre\u003e\u003c/div\u003e\u003cp\u003e　　commit-hash 可以直接从 github 网页上复制。\u003c/p\u003e\n\u003cp\u003e　　这时 commit 的作者是源仓库的作者， Vercel 提示我 Build 失败，需要升级到 Pro，可以再修改一个文件，自己添加一条 commit 。\u003c/p\u003e\n\u003cp\u003e　　当然这很不优雅，可以使用下面的命令获取更改到文件，但是不会提交 commit ，\u003c/p\u003e\n\u003cdiv class=\"highlight\"\u003e\u003cpre tabindex=\"0\" style=\"color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;\"\u003e\u003ccode class=\"language-sh\" data-lang=\"sh\"\u003e\u003cspan style=\"display:flex;\"\u003e\u003cspan\u003egit cherry-pick \u0026lt;commit-hash\u0026gt; --no-commit\n\u003c/span\u003e\u003c/span\u003e\u003c/code\u003e\u003c/pre\u003e\u003c/div\u003e\u003cp\u003e　　然后手动提交一下\u003c/p\u003e\n\u003cdiv class=\"highlight\"\u003e\u003cpre tabindex=\"0\" style=\"color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;\"\u003e\u003ccode class=\"language-sh\" data-lang=\"sh\"\u003e\u003cspan style=\"display:flex;\"\u003e\u003cspan\u003egit commit -m \u003cspan style=\"color:#e6db74\"\u003e\u0026#34;commit information\u0026#34;\u003c/span\u003e\n\u003c/span\u003e\u003c/span\u003e\u003c/code\u003e\u003c/pre\u003e\u003c/div\u003e\u003ch3 id=\"解决冲突\"\u003e解决冲突\u003c/h3\u003e\n\u003cp\u003e　　如何自己已经修改过源代码，在合并过程中可能发生冲突，需要手动解决。\u003cbr\u003e\nGit 也会进行提示，手动编辑冲突文件并保存，然后再提交更改。\u003c/p\u003e","readingTime":1,"tags":["Git教程","同步"],"title":"Git 同步上游仓库的更新","url":"/posts/git-tongbu/"},{"author":"克喵爱吃卤面","avatar":"/img/kemiao.jpg","categories":["技术分享"],"description":"\u003cblockquote\u003e\r\n    \u003cp\u003e原文位置: \u003ca href=\"https://markdown.com.cn/basic-syntax/headings.html\" target=\"_blank\"\u003ehttps://markdown.com.cn/basic-syntax/headings.html\u003c/a\u003e\r\n\u003c/p\u003e\r\n  \u003c/blockquote\u003e\r\n\r\n\u003ch1 id=\"markdown-标题语法\"\u003eMarkdown 标题语法\u003c/h1\u003e\n\u003cp\u003e要创建标题，请在单词或短语前面添加井号 (#) 。\u003ccode\u003e#\u003c/code\u003e 的数量代表了标题的级别。例如，添加三个 \u003ccode\u003e#\u003c/code\u003e 表示创建一个三级标题 (\u003ccode\u003e\u0026lt;h3\u0026gt;\u003c/code\u003e) (例如：\u003ccode\u003e### My Header\u003c/code\u003e)。\u003c/p\u003e\n\u003ctable\u003e\n  \u003cthead\u003e\n      \u003ctr\u003e\n          \u003cth\u003eMarkdown语法\u003c/th\u003e\n          \u003cth\u003eHTML\u003c/th\u003e\n          \u003cth\u003e预览效果\u003c/th\u003e\n      \u003c/tr\u003e\n  \u003c/thead\u003e\n  \u003ctbody\u003e\n      \u003ctr\u003e\n          \u003ctd\u003e\u003ccode\u003e# Heading level 1\u003c/code\u003e\u003c/td\u003e\n          \u003ctd\u003e\u0026lt;h1\u0026gt;Heading level 1\u0026lt;/h1\u0026gt;\u003c/td\u003e\n          \u003ctd\u003e\u003ch1\u003eHeading level 1\u003c/h1\u003e\u003c/td\u003e\n      \u003c/tr\u003e\n      \u003ctr\u003e\n          \u003ctd\u003e\u003ccode\u003e## Heading level 2\u003c/code\u003e\u003c/td\u003e\n          \u003ctd\u003e\u0026lt;h2\u0026gt;Heading level 1\u0026lt;/h2\u0026gt;\u003c/td\u003e\n          \u003ctd\u003e\u003ch2\u003eHeading level 2\u003c/h2\u003e\u003c/td\u003e\n      \u003c/tr\u003e\n      \u003ctr\u003e\n          \u003ctd\u003e\u003ccode\u003e### Heading level 3\u003c/code\u003e\u003c/td\u003e\n          \u003ctd\u003e\u0026lt;h3\u0026gt;Heading level 1\u0026lt;/h3\u0026gt;\u003c/td\u003e\n          \u003ctd\u003e\u003ch3\u003eHeading level 3\u003c/h3\u003e\u003c/td\u003e\n      \u003c/tr\u003e\n      \u003ctr\u003e\n          \u003ctd\u003e\u003ccode\u003e#### Heading level 4\u003c/code\u003e\u003c/td\u003e\n          \u003ctd\u003e\u0026lt;h4\u0026gt;Heading level 1\u0026lt;/h4\u0026gt;\u003c/td\u003e\n          \u003ctd\u003e\u003ch4\u003eHeading level 4\u003c/h4\u003e\u003c/td\u003e\n      \u003c/tr\u003e\n      \u003ctr\u003e\n          \u003ctd\u003e\u003ccode\u003e##### Heading level 5\u003c/code\u003e\u003c/td\u003e\n          \u003ctd\u003e\u0026lt;h5\u0026gt;Heading level 1\u0026lt;/h5\u0026gt;\u003c/td\u003e\n          \u003ctd\u003e\u003ch5\u003eHeading level 5\u003c/h5\u003e\u003c/td\u003e\n      \u003c/tr\u003e\n      \u003ctr\u003e\n          \u003ctd\u003e\u003ccode\u003e###### Heading level 6\u003c/code\u003e\u003c/td\u003e\n          \u003ctd\u003e\u0026lt;h6\u0026gt;Heading level 1\u0026lt;/h6\u0026gt;\u003c/td\u003e\n          \u003ctd\u003e\u003ch6\u003eHeading level 6\u003c/h6\u003e\u003c/td\u003e\n      \u003c/tr\u003e\n  \u003c/tbody\u003e\n\u003c/table\u003e\n\u003ch2 id=\"可选语法\"\u003e可选语法\u003c/h2\u003e\n\u003cp\u003e还可以在文本下方添加任意数量的 == 号来标识一级标题，或者 \u0026ndash; 号来标识二级标题。\u003c/p\u003e","readingTime":1,"tags":["Markdown","速查表","标题语法"],"title":"Markdown-标题语法 | 技术分享","url":"/posts/markdown-biaotiyufa/"},{"author":"克喵爱吃卤面","avatar":"/img/kemiao.jpg","categories":["技术分享"],"description":"\u003cblockquote\u003e\r\n    \u003cp\u003e原文位置: \u003ca href=\"https://markdown.com.cn/cheat-sheet.html#%E6%80%BB%E8%A7%88\" target=\"_blank\"\u003ehttps://markdown.com.cn/cheat-sheet.html#%E6%80%BB%E8%A7%88\u003c/a\u003e\r\n\u003c/p\u003e\r\n  \u003c/blockquote\u003e\r\n\r\n\u003ch1 id=\"总览\"\u003e总览\u003c/h1\u003e\n\u003cp\u003eMarkdown 速查表提供了所有 \u003cstrong\u003eMarkdown\u003c/strong\u003e\n语法元素的基本解释。如果你想了解某些语法元素的更多信息，请参阅更详细的\n\u003cstrong\u003e基本语法\u003c/strong\u003e 和 \u003cstrong\u003e扩展语法\u003c/strong\u003e.\u003c/p\u003e\n\u003ch2 id=\"基本语法\"\u003e基本语法\u003c/h2\u003e\n\u003cp\u003e这些是 \u003cstrong\u003eJohn Gruber\u003c/strong\u003e 的原始设计文档中列出的元素。所有 \u003cstrong\u003eMarkdown\u003c/strong\u003e\n应用程序都支持这些元素。\u003c/p\u003e\n\u003ctable\u003e\n  \u003cthead\u003e\n      \u003ctr\u003e\n          \u003cth\u003e元素\u003c/th\u003e\n          \u003cth\u003eMarkdown 语法\u003c/th\u003e\n      \u003c/tr\u003e\n  \u003c/thead\u003e\n  \u003ctbody\u003e\n      \u003ctr\u003e\n          \u003ctd\u003e标题（Heading）\u003c/td\u003e\n          \u003ctd\u003e# H1 一级标题\u003cbr\u003e ## H2 二级标题\u003cbr\u003e ### H3 三级标题\u003c/td\u003e\n      \u003c/tr\u003e\n      \u003ctr\u003e\n          \u003ctd\u003e粗体（Bold）\u003c/td\u003e\n          \u003ctd\u003e**bold text**\u003c/td\u003e\n      \u003c/tr\u003e\n      \u003ctr\u003e\n          \u003ctd\u003e斜体（Italic）\u003c/td\u003e\n          \u003ctd\u003e*italicized text*\u003c/td\u003e\n      \u003c/tr\u003e\n      \u003ctr\u003e\n          \u003ctd\u003e引用块（Blockquote）\u003c/td\u003e\n          \u003ctd\u003e\u0026gt; blockquote\u003c/td\u003e\n      \u003c/tr\u003e\n      \u003ctr\u003e\n          \u003ctd\u003e有序列表（Ordered List）\u003c/td\u003e\n          \u003ctd\u003e1. First item\u003cbr\u003e 2. Second item\u003cbr\u003e 3. Third item\u003c/td\u003e\n      \u003c/tr\u003e\n      \u003ctr\u003e\n          \u003ctd\u003e无序列表（Unordered List）\u003c/td\u003e\n          \u003ctd\u003e- First item\u003cbr\u003e - Second item\u003cbr\u003e - Third item\u003c/td\u003e\n      \u003c/tr\u003e\n      \u003ctr\u003e\n          \u003ctd\u003e代码（Code）\u003c/td\u003e\n          \u003ctd\u003e`code`\u003c/td\u003e\n      \u003c/tr\u003e\n      \u003ctr\u003e\n          \u003ctd\u003e分隔线（Horizontal Rule）\u003c/td\u003e\n          \u003ctd\u003e\u003ccode\u003e---\u003c/code\u003e\u003c/td\u003e\n      \u003c/tr\u003e\n      \u003ctr\u003e\n          \u003ctd\u003e链接（Link）\u003c/td\u003e\n          \u003ctd\u003e[title](\u003ca href=\"https://www.example.com\" target=\"_blank\"\u003ehttps://www.example.com\u003c/a\u003e\r\n)\u003c/td\u003e\n      \u003c/tr\u003e\n      \u003ctr\u003e\n          \u003ctd\u003e图片（Image）\u003c/td\u003e\n          \u003ctd\u003e![alt text](image.jpg)\u003c/td\u003e\n      \u003c/tr\u003e\n  \u003c/tbody\u003e\n\u003c/table\u003e\n\u003ch2 id=\"扩展语法\"\u003e扩展语法\u003c/h2\u003e\n\u003cp\u003e这些元素通过添加额外的功能扩展了基本语法。但是，并非所有 \u003cstrong\u003eMarkdown\u003c/strong\u003e\n应用程序都支持这些元素。\u003c/p\u003e","readingTime":1,"tags":["Markdown","速查表","语法"],"title":"Markdown-速查表","url":"/posts/markdown-sulanbiao/"}];
+  var fuseOptions = {
+    keys: [
+      "title",
+    ]
+  };
+
+  var fuse = new Fuse(fuseData, fuseOptions);
+</script>
+
+
+
+    
+
+    
+
+    
+
+    
+
+    <script type="module" src="https://cdn.jsdelivr.net/npm/ionicons@7.4.0/dist/ionicons/ionicons.esm.js" integrity="sha256-/IFmi82bIhdYWctu0UddSlJqpnzWm7Vh2C4CM32wF/k=" crossorigin="anonymous"></script>
+    <script nomodule src="https://cdn.jsdelivr.net/npm/ionicons@7.4.0/dist/ionicons/ionicons.js" integrity="sha256-mr7eJMX3VC3F7G32mk4oWp1C6a2tlMYxUdptfT7uKI8=" crossorigin="anonymous"></script>
+  </body>
+</html>
